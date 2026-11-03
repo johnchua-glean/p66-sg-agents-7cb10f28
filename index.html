@@ -1,0 +1,808 @@
+<!-- This deck uses Glean Tau's slides-artifact chassis. Preserve the stage, track, controls, accessibility, and print rules when editing. -->
+<!doctype html>
+<html lang="en">
+  <head>
+<meta name="robots" content="noindex,nofollow">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Six agent use cases for P66 Singapore</title>
+    <meta name="glean-artifact-type" content="slides" />
+    <script>
+      if (!document.documentElement.hasAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.dataset.theme = 'dark'
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: light;
+        --slide-w: 1280px;
+        --slide-h: 720px;
+        --artifact-background: #ffffff;
+        --artifact-background-light: #f1f3f6;
+        --artifact-background-mid: #e9ecf1;
+        --artifact-border-light: #e3e6ec;
+        --artifact-border-dark: #cdd2db;
+        --artifact-primary-brand: #343ced;
+        --artifact-primary-highlight: #0d0f14;
+        --artifact-primary-hover: #2830c4;
+        --artifact-selected: #ecedff;
+        --artifact-text-primary: #11141a;
+        --artifact-text-secondary: #5c6470;
+        --artifact-text-highlight: #e8eefc;
+        --artifact-positive: #159a6a;
+        --artifact-positive-background: #e8f6ee;
+        --artifact-positive-text: #11141a;
+        --artifact-negative: #dc4c4c;
+        --artifact-soft: #7d8490;
+        --artifact-rule: #d9dde5;
+        --artifact-accent-tint: #f1f2ff;
+        --artifact-link: #2b33d6;
+        --artifact-warning: #a66a00;
+        --artifact-series-1: #5d7be8;
+        --artifact-series-2: #18a5a1;
+        --artifact-series-3: #c87830;
+        --artifact-series-4: #8a61c7;
+        --artifact-series-5: #4e8b5d;
+        --artifact-series-6: #b6536b;
+        --artifact-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        --artifact-font-mono:
+          'SF Mono', 'IBM Plex Mono', 'Cascadia Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+      @media screen {
+        html[data-theme='dark'] {
+          color-scheme: dark;
+          --artifact-background: #0a0b0e;
+          --artifact-background-light: #121419;
+          --artifact-background-mid: #181b22;
+          --artifact-border-light: #23262e;
+          --artifact-border-dark: #343844;
+          --artifact-primary-brand: #8f96ff;
+          --artifact-primary-highlight: #f5f7fb;
+          --artifact-primary-hover: #a7acff;
+          --artifact-selected: #1b1d45;
+          --artifact-text-primary: #eef0f4;
+          --artifact-text-secondary: #9aa0ad;
+          --artifact-text-highlight: #14213d;
+          --artifact-positive: #46d39a;
+          --artifact-positive-background: #0e2a1d;
+          --artifact-positive-text: #c8f5da;
+          --artifact-negative: #ff6b6b;
+          --artifact-soft: #737b8a;
+          --artifact-rule: #30343d;
+          --artifact-accent-tint: #15163a;
+          --artifact-link: #a3a9ff;
+          --artifact-warning: #e5b14f;
+          --artifact-series-1: #91a9ff;
+          --artifact-series-2: #55cbc4;
+          --artifact-series-3: #e3a05d;
+          --artifact-series-4: #b495e8;
+          --artifact-series-5: #83bd8f;
+          --artifact-series-6: #df869d;
+          --artifact-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+          --artifact-font-mono:
+            'SF Mono', 'IBM Plex Mono', 'Cascadia Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        overflow: hidden;
+        color: var(--artifact-text-primary);
+        background: var(--artifact-background-light);
+        font-family: var(--artifact-font-sans);
+        font-weight: 400;
+        letter-spacing: -0.005em;
+      }
+      button {
+        font: inherit;
+      }
+      button:focus-visible {
+        outline: 3px solid var(--artifact-primary-brand);
+        outline-offset: 3px;
+      }
+
+      .deck-viewport {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        grid-template-rows: minmax(0, 1fr) auto;
+        overflow: hidden;
+      }
+      .deck-stage {
+        min-height: 0;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        container-type: size;
+        padding: min(2cqw, 2cqh);
+      }
+      .deck {
+        --stage-w: min(var(--slide-w), 96cqw, calc(96cqh * 16 / 9));
+        --stage-h: calc(var(--stage-w) * 9 / 16);
+        width: var(--stage-w);
+        height: var(--stage-h);
+        overflow: hidden;
+        background: var(--artifact-background);
+        box-shadow: 0 0 0 1px var(--artifact-border-light);
+      }
+      .deck-track {
+        height: 100%;
+        display: flex;
+        transform: translateX(calc(var(--i, 0) * -1 * var(--stage-w)));
+        transition: transform 240ms ease;
+      }
+      .slide {
+        flex: 0 0 var(--stage-w);
+        width: var(--stage-w);
+        height: var(--stage-h);
+        container-type: inline-size;
+        position: relative;
+        display: grid;
+        overflow: clip;
+        contain: layout paint;
+        background: var(--artifact-background);
+      }
+      .slide > * {
+        min-width: 0;
+        min-height: 0;
+      }
+      .slide-body {
+        position: absolute;
+        inset: 5cqw;
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr) auto;
+        gap: 2cqw;
+        min-height: 0;
+        overflow-wrap: anywhere;
+      }
+      .slide-head {
+        display: grid;
+        gap: 0.8cqw;
+        align-content: start;
+      }
+      .eyebrow {
+        margin: 0;
+        color: var(--artifact-text-secondary);
+        font-family: var(--artifact-font-mono);
+        font-size: 1.05cqw;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: var(--artifact-font-sans);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        text-wrap: balance;
+      }
+      h1 {
+        max-width: 22ch;
+        font-size: 5.2cqw;
+        font-weight: 300;
+      }
+      h2 {
+        max-width: 28ch;
+        font-size: 3.4cqw;
+        font-weight: 400;
+      }
+      h3 {
+        font-weight: 500;
+      }
+      p {
+        margin: 0;
+      }
+      .lede {
+        max-width: 52ch;
+        color: var(--artifact-text-secondary);
+        font-size: 1.65cqw;
+        line-height: 1.42;
+      }
+      .slide-main {
+        min-width: 0;
+        min-height: 0;
+        display: grid;
+        gap: 1.5cqw;
+        align-content: center;
+      }
+      .slide-foot {
+        min-width: 0;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 2cqw;
+        color: var(--artifact-text-secondary);
+        font-size: 0.95cqw;
+      }
+      .source {
+        max-width: 78%;
+      }
+      .pgnum {
+        font-variant-numeric: tabular-nums;
+      }
+
+      .title-slide {
+        background: var(--artifact-accent-tint);
+      }
+      .title-slide .slide-main {
+        align-content: end;
+      }
+
+      .layout-two-col .slide-main {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      }
+      .layout-kpi-grid .slide-main {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .card {
+        min-width: 0;
+        min-height: 0;
+        padding: 1.8cqw;
+        border: 0.12cqw solid var(--artifact-border-light);
+        border-radius: 1.1cqw;
+        background: var(--artifact-background-light);
+      }
+      .card h3 {
+        margin: 0 0 0.8cqw;
+        font-size: 1.55cqw;
+      }
+      .card p,
+      .card li {
+        color: var(--artifact-text-secondary);
+        font-size: 1.2cqw;
+        line-height: 1.35;
+      }
+      .card ul {
+        margin: 0;
+        padding-left: 1.4cqw;
+        display: grid;
+        gap: 0.6cqw;
+      }
+      .metric {
+        display: grid;
+        gap: 0.55cqw;
+        align-content: center;
+      }
+      .metric strong {
+        color: var(--artifact-text-primary);
+        font-size: 4.2cqw;
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        font-variant-numeric: tabular-nums;
+      }
+      .metric span {
+        color: var(--artifact-text-secondary);
+        font-size: 1.15cqw;
+        line-height: 1.3;
+      }
+      .accent-rule {
+        width: 8cqw;
+        height: 0.5cqw;
+        border-radius: 999px;
+        background: var(--artifact-primary-brand);
+      }
+
+      .media-bar {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 8px 16px;
+        border-top: 1px solid var(--artifact-border-light);
+        background: var(--artifact-background);
+      }
+      .media-bar button {
+        min-width: 42px;
+        min-height: 32px;
+        border: 1px solid var(--artifact-border-dark);
+        border-radius: 8px;
+        color: var(--artifact-text-primary);
+        background: var(--artifact-background);
+        cursor: pointer;
+      }
+      .media-bar button:hover:not(:disabled) {
+        background: var(--artifact-background-light);
+      }
+      .media-bar button:disabled {
+        cursor: default;
+        opacity: 0.45;
+      }
+      #counter {
+        min-width: 8ch;
+        color: var(--artifact-text-secondary);
+        text-align: center;
+        font-variant-numeric: tabular-nums;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .deck-track {
+          transition: none;
+        }
+      }
+
+      @media print {
+        @page {
+          size: 1280px 720px;
+          margin: 0;
+        }
+        html,
+        body {
+          width: var(--slide-w);
+          height: auto;
+          margin: 0;
+          overflow: visible;
+          background: var(--artifact-background);
+        }
+        .deck-viewport {
+          position: static;
+          display: block;
+          overflow: visible;
+        }
+        .deck-stage {
+          display: block;
+          padding: 0;
+          overflow: visible;
+          container-type: normal;
+        }
+        .deck {
+          width: auto;
+          height: auto;
+          overflow: visible;
+          box-shadow: none;
+        }
+        .deck-track {
+          display: block;
+          transform: none;
+          transition: none;
+        }
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+        .slide {
+          width: var(--slide-w);
+          height: var(--slide-h);
+          aspect-ratio: auto;
+          break-inside: avoid;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+        .slide:not(:last-child) {
+          break-after: page;
+        }
+        img,
+        svg {
+          max-width: none;
+        }
+        .media-bar {
+          display: none !important;
+        }
+      }
+
+      /* ---- deck-specific ---- */
+      h1 { max-width: 15ch; }
+      h2 { max-width: none; font-size: 2.8cqw; }
+      .slide-head { gap: 0.6cqw; }
+      .rightfoot { display: inline-flex; align-items: center; gap: 1.6cqw; }
+      .wordmark { display: inline-block; width: 5.6cqw; height: 2.26cqw; font-size: 0; line-height: 0; color: transparent; overflow: hidden; background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjEyMSIgdmlld0JveD0iMCAwIDMwMCAxMjEiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xNDUuNTczIDc3LjYzMkMxNDMuOTIyIDc5LjIwMzcgMTQyLjAwOCA4MC41MTM2IDEzOS44MjkgODEuNDMwNEMxMzcuNzE2IDgyLjM0NzIgMTM1LjMzOSA4Mi44MDU2IDEzMi44MyA4Mi44MDU2QzEzMS41MSA4Mi44MDU2IDEzMC4yNTUgODIuNjc1IDEyOS4wNjggODIuNDEzMUMxMjcuODc5IDgyLjE1MTMgMTI2LjY5MSA4MS43NTgyIDEyNS41NjggODEuMjk5OEMxMjQuNDQ2IDgwLjc3NjEgMTIzLjM5IDgwLjE4NjUgMTIyLjM5OSA3OS41MzE1QzEyMS40MDkgNzguODEwNyAxMjAuNDg0IDc4LjAyNTEgMTE5LjY5MiA3Ny4xNzM2TDE1MC45MiA2NS4xODk1TDE2NC4xOTEgNjAuMDgxNEMxNjMuNDY1IDU1LjQ5NzEgMTYxLjgxNCA1MS4xNzQ5IDE1OS4zMDYgNDcuNDQxOUMxNTMuNjI4IDM4LjkyODUgMTQzLjg1NiAzMy4zNjIxIDEzMi44MyAzMy4zNjIxQzExNS4zMzUgMzMuMzYyMSAxMDEuMDc0IDQ3LjUwNzYgMTAxLjA3NCA2NC44NjE3QzEwMS4wNzQgNjYuNDk5MyAxMDEuMjA2IDY4LjA3MTEgMTAxLjQ3IDY5LjY0MjhDMTAyLjE5NyA3NC4yMjY3IDEwMy44NDcgNzguNTQ5NCAxMDYuMzU2IDgyLjI4MTlDMTA3LjgwOCA4NC4zNzczIDEwOS40NTkgODYuMzQyMSAxMTEuMzczIDg4LjA0NTFDMTEzLjI4OCA4OS43NDggMTE1LjMzNSA5MS4yNTM4IDExNy42NDYgOTIuNDk4NEMxMTkuODkgOTMuNzQyNCAxMjIuMzMzIDk0LjcyNTEgMTI0LjkwOCA5NS4zNzk0QzEyNy40ODMgOTYuMDM0MyAxMzAuMTI0IDk2LjM2MjEgMTMyLjg5NyA5Ni4zNjIxQzEzNy4yNTQgOTYuMzYyMSAxNDEuNDggOTUuNTEwNiAxNDUuMjQzIDkzLjg3MzZDMTQ5LjA3MiA5Mi4zMDE5IDE1Mi40MzkgODkuOTQ0IDE1NS4zNDQgODcuMTI4M0MxNTguMjQ5IDg0LjI0NjcgMTYwLjU2IDgwLjkwNjcgMTYyLjE0NSA3Ny4xMDgzQzE2Mi44MDQgNzUuNTM2NiAxNjMuMzMzIDczLjgzMzYgMTYzLjcyOSA3Mi4xMzEzSDE0OS4zMzZDMTQ4LjQ3OCA3NC4yMjY3IDE0Ny4yMjMgNzYuMDYwMyAxNDUuNTczIDc3LjYzMlpNMTMyLjg5NyA0Ni44NTI2QzEzOC4wNDYgNDYuODUyNiAxNDIuNzM0IDQ5LjA3OTQgMTQ2LjAzNSA1Mi40ODQ3TDExNC44MDcgNjQuNDY5MkMxMTUuMDA0IDU0Ljc3NjYgMTIzLjA1OSA0Ni44NTI2IDEzMi44OTcgNDYuODUyNloiIGZpbGw9IiMzNDNDRUQiLz4KPHBhdGggZD0iTTg4LjEwNzEgNzAuMTEwMkw4OC4wNDEgMC43MTMxMzVINzQuMjI4NUw3NC4yOTQ3IDY5Ljc4MDZDNzQuMjk0NyA4NC4zNTkxIDg0LjA3NiA5NC43MTU5IDk4LjM1MSA5NS43NzEyVjgyLjE4MkM5Mi4zMzc0IDgxLjE5MjcgODguMTA3MSA3Ni40NDMgODguMTA3MSA3MC4xMTAyWiIgZmlsbD0iIzM0M0NFRCIvPgo8cGF0aCBkPSJNODcuOTU0OCA3MC4yNDAzTDg3Ljg4ODYgMC44NDMyNjJINzQuMDc2Mkw3NC4xNDIzIDY5LjkxMDdDNzQuMTQyMyA4NC40ODkyIDgzLjkyMzcgOTQuODQ2IDk4LjE5ODcgOTUuOTAxM1Y4Mi4zMTIyQzkyLjE4NSA4MS4zMjI4IDg3Ljk1NDggNzYuNTczMiA4Ny45NTQ4IDcwLjI0MDNaIiBmaWxsPSIjMzQzQ0VEIi8+CjxwYXRoIGQ9Ik0yMzQuMTkyIDYzLjc0NTJDMjMzLjUyMiA0Ni45OCAyMTkuMzc4IDMzLjQ4OTUgMjAyLjAxNyAzMy40ODk1QzE4NC4yNTMgMzMuNDg5NSAxNjkuNzc0IDQ3LjYzNTEgMTY5Ljc3NCA2NC45ODkxQzE2OS43NzQgODIuMzQzMiAxODQuMjUzIDk2LjQ4OTUgMjAyLjAxNyA5Ni40ODk1QzIwOC44NTQgOTYuNDg5NSAyMTUuMjIyIDk0LjM5MzUgMjIwLjQ1IDkwLjc5MTZWOTUuODk5OUgyMzQuMzI2TDIzNC4xOTIgNjMuODc1OFY2My43NDUyWk0yMDIuMDE3IDgyLjk5OUMxOTEuODk1IDgyLjk5OSAxODMuNjUgNzQuOTQzOCAxODMuNjUgNjUuMDU1QzE4My42NSA1NS4xNjYzIDE5MS44OTUgNDcuMTExMSAyMDIuMDE3IDQ3LjExMTFDMjEyLjEzOSA0Ny4xMTExIDIyMC4zODQgNTUuMTY2MSAyMjAuMzg0IDY1LjA1NUMyMjAuMzg0IDc0Ljk0NCAyMTIuMTM5IDgyLjk5OSAyMDIuMDE3IDgyLjk5OVoiIGZpbGw9IiMzNDNDRUQiLz4KPHBhdGggZD0iTTI3MC4zNzYgMzMuMTMxOEMyNTQuMDE1IDMzLjEzMTggMjQwLjc1MiA0Ni4zNDU0IDI0MC43NTIgNjIuNjQ1MlY5Ni4wNjQ0SDI1NC44MzVWNjIuNjIzQzI1NC44MzUgNTQuMTQ2OSAyNjEuNzMyIDQ3LjI3NTcgMjcwLjI0IDQ3LjI3NTdIMjcwLjUxMkMyNzkuMDIgNDcuMjc1NyAyODUuOTE3IDU0LjE0NjkgMjg1LjkxNyA2Mi42MjNWOTYuMDY0NEgzMDBWNjIuNjQ1MkMzMDAgNDYuMzQ1NCAyODYuNzM3IDMzLjEzMTggMjcwLjM3NiAzMy4xMzE4WiIgZmlsbD0iIzM0M0NFRCIvPgo8cGF0aCBkPSJNNzcuNjQ2NSA5Ny4wNTU3Qzc2LjcxMTkgOTguMzc5OCA3NS43MTY5IDk5LjY2NzkgNzQuNjY3IDEwMC45MDFDNzMuNjE2OCAxMDIuMTQxIDcyLjUxNzUgMTAzLjMyNyA3MS4zNjQzIDEwNC40N0M3MC4yMTcgMTA1LjYxMyA2OS4wMTUxIDEwNi43MDEgNjcuNzY0NiAxMDcuNzQxQzY2LjUyMDQgMTA4Ljc4MSA2NS4yMjc5IDEwOS43NjEgNjMuODkyNiAxMTAuNjg3QzYyLjU2MzIgMTExLjYxOCA2MS4xOTA1IDExMi40ODggNTkuNzgyMiAxMTMuMjk5QzU4LjM4MDIgMTE0LjEwMyA1Ni45MzU4IDExNC44NDcgNTUuNDYwOSAxMTUuNTNDNTMuOTkyMSAxMTYuMjE0IDUyLjQ5MjcgMTE2LjgzMSA1MC45NTcgMTE3LjM4MUM0OS40Mzk3IDExNy45MzcgNDcuODg1NyAxMTguNDIxIDQ2LjMwNzYgMTE4LjgzMkM0NC43NDc3IDExOS4yNDkgNDMuMTYzMSAxMTkuNjAxIDQxLjU1NDcgMTE5Ljg3OUMzOS45NjQzIDEyMC4xNTcgMzguMzU1NSAxMjAuMzY5IDM2LjcyMjcgMTIwLjUwMkMzNS4xMjAyIDEyMC42NDEgMzMuNDk5MyAxMjAuNzEzIDMxLjg2MDQgMTIwLjcxM0MzMC4yMjE0IDEyMC43MTMgMjguNjAwNSAxMjAuNjQxIDI2Ljk5OCAxMjAuNTAyQzI1LjM2NTIgMTIwLjM2OSAyMy43NTAzIDEyMC4xNTcgMjIuMTY2IDExOS44NzlDMjAuNTU3NyAxMTkuNjAxIDE4Ljk2NzggMTE5LjI0OSAxNy40MTQxIDExOC44MzJMMjAuOTg5MyAxMDUuNTRDMjIuMTYwNyAxMDUuODYxIDIzLjM1NjYgMTA2LjEyMSAyNC41NjQ1IDEwNi4zMjZDMjUuNzYwMiAxMDYuNTM4IDI2Ljk3NDEgMTA2LjY5NSAyOC4yMDAyIDEwNi43OThDMjkuNDA4MSAxMDYuOTAxIDMwLjYyODEgMTA2Ljk1NSAzMS44NjA0IDEwNi45NTVDMzMuMDkyNiAxMDYuOTU1IDM0LjMxMjYgMTA2LjkwMSAzNS41MjA1IDEwNi43OThDMzYuNzQ2NSAxMDYuNjk1IDM3Ljk2MDUgMTA2LjUzOCAzOS4xNTYyIDEwNi4zMjZDNDAuMzY0MSAxMDYuMTIxIDQxLjU2IDEwNS44NjEgNDIuNzMxNCAxMDUuNTRDNDMuOTIxMiAxMDUuMjMyIDQ1LjA4NzEgMTA0Ljg2OCA0Ni4yMzQ0IDEwNC40NTFDNDcuMzg3NiAxMDQuMDQgNDguNTE2NSAxMDMuNTc1IDQ5LjYyMTEgMTAzLjA2MUM1MC43MzE5IDEwMi41NDcgNTEuODE4OSAxMDEuOTkxIDUyLjg3NSAxMDEuMzhDNTMuOTM3MyAxMDAuNzc1IDU0Ljk3NSAxMDAuMTE1IDU1Ljk3NjYgOTkuNDE5OUM1Ni45ODQyIDk4LjcyNDUgNTcuOTU1OCA5Ny45ODcyIDU4Ljg5MDYgOTcuMjA3QzU5LjgzMTUgOTYuNDI2OSA2MC43MzU1IDk1LjYwMzkgNjEuNjAzNSA5NC43NDUxQzYyLjQ3MTUgOTMuODgwNCA2My4zMDM3IDkyLjk5MTggNjQuMDkyOCA5Mi4wNjA1QzY0Ljg4MTkgOTEuMTI5MyA2NS42MzQ4IDkwLjE2MTkgNjYuMzM4OSA4OS4xNjQxTDc3LjY0NjUgOTcuMDU1N1pNNjUuMjcyNSAzMy4xMzA5TDU2LjMxMTUgNDQuNTU2NkM2MC45MzY0IDUwLjA2NjMgNjMuNzIxNiA1Ny4xNjEyIDYzLjcyMTcgNjQuOTA1M0M2My43MjE3IDgyLjQzNTkgNDkuNDU3NSA5Ni42NDczIDMxLjg2MTMgOTYuNjQ3NUMxNC4yNjUgOTYuNjQ3NSAwIDgyLjQzNTkgMCA2NC45MDUzQzAuMDAwMjQ4NzAyIDQ3LjM3NDggMTQuMjY1MSAzMy4xNjQxIDMxLjg2MTMgMzMuMTY0MUMzNi42NjA2IDMzLjE2NDEgNDEuMjExMiAzNC4yMjI4IDQ1LjI5MyAzNi4xMTYyTDU0LjMyMDMgMjQuNjA2NEw2NS4yNzI1IDMzLjEzMDlaTTMxLjg2MTMgNDYuNzk1OUMyMS44MjI0IDQ2Ljc5NTkgMTMuNjgzOCA1NC45MDM5IDEzLjY4MzYgNjQuOTA1M0MxMy42ODM2IDc0LjkwNjggMjEuODIyMyA4My4wMTU2IDMxLjg2MTMgODMuMDE1NkM0MS45MDAyIDgzLjAxNTQgNTAuMDM4MSA3NC45MDY3IDUwLjAzODEgNjQuOTA1M0M1MC4wMzc4IDU0LjkwNCA0MS45MDAxIDQ2Ljc5NjEgMzEuODYxMyA0Ni43OTU5WiIgZmlsbD0iIzM0M0NFRCIvPgo8L3N2Zz4K") center / contain no-repeat; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .wordmark.large { width: 9.4cqw; height: 3.79cqw; }
+      @media screen { html[data-theme='dark'] .wordmark { background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDMwMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xNDUuNTczIDc2LjkxODlDMTQzLjkyMiA3OC40OTA2IDE0Mi4wMDggNzkuODAwNSAxMzkuODI5IDgwLjcxNzNDMTM3LjcxNiA4MS42MzQxIDEzNS4zMzkgODIuMDkyNSAxMzIuODMgODIuMDkyNUMxMzEuNTEgODIuMDkyNSAxMzAuMjU1IDgxLjk2MTggMTI5LjA2OCA4MS43QzEyNy44NzkgODEuNDM4MSAxMjYuNjkxIDgxLjA0NSAxMjUuNTY4IDgwLjU4NjZDMTI0LjQ0NiA4MC4wNjI5IDEyMy4zOSA3OS40NzMzIDEyMi4zOTkgNzguODE4NEMxMjEuNDA5IDc4LjA5NzUgMTIwLjQ4NCA3Ny4zMTIgMTE5LjY5MiA3Ni40NjA1TDE1MC45MiA2NC40NzYzTDE2NC4xOTEgNTkuMzY4MkMxNjMuNDY1IDU0Ljc4NCAxNjEuODE0IDUwLjQ2MTcgMTU5LjMwNiA0Ni43Mjg4QzE1My42MjggMzguMjE1MyAxNDMuODU2IDMyLjY0ODkgMTMyLjgzIDMyLjY0ODlDMTE1LjMzNSAzMi42NDg5IDEwMS4wNzQgNDYuNzk0NSAxMDEuMDc0IDY0LjE0ODZDMTAxLjA3NCA2NS43ODYyIDEwMS4yMDYgNjcuMzU3OSAxMDEuNDcgNjguOTI5NkMxMDIuMTk3IDczLjUxMzYgMTAzLjg0NyA3Ny44MzYzIDEwNi4zNTYgODEuNTY4OEMxMDcuODA4IDgzLjY2NDIgMTA5LjQ1OSA4NS42MjkgMTExLjM3MyA4Ny4zMzE5QzExMy4yODggODkuMDM0OSAxMTUuMzM1IDkwLjU0MDcgMTE3LjY0NiA5MS43ODUzQzExOS44OSA5My4wMjkyIDEyMi4zMzMgOTQuMDExOSAxMjQuOTA4IDk0LjY2NjNDMTI3LjQ4MyA5NS4zMjEyIDEzMC4xMjQgOTUuNjQ5IDEzMi44OTcgOTUuNjQ5QzEzNy4yNTQgOTUuNjQ5IDE0MS40OCA5NC43OTc1IDE0NS4yNDMgOTMuMTYwNUMxNDkuMDcyIDkxLjU4ODcgMTUyLjQzOSA4OS4yMzA4IDE1NS4zNDQgODYuNDE1MUMxNTguMjQ5IDgzLjUzMzYgMTYwLjU2IDgwLjE5MzYgMTYyLjE0NSA3Ni4zOTUyQzE2Mi44MDQgNzQuODIzNSAxNjMuMzMzIDczLjEyMDUgMTYzLjcyOSA3MS40MTgySDE0OS4zMzZDMTQ4LjQ3OCA3My41MTM2IDE0Ny4yMjMgNzUuMzQ3MiAxNDUuNTczIDc2LjkxODlaTTEzMi44OTcgNDYuMTM5NEMxMzguMDQ2IDQ2LjEzOTQgMTQyLjczNCA0OC4zNjYzIDE0Ni4wMzUgNTEuNzcxNUwxMTQuODA3IDYzLjc1NjFDMTE1LjAwNCA1NC4wNjM1IDEyMy4wNTkgNDYuMTM5NCAxMzIuODk3IDQ2LjEzOTRaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNODguMTA3MSA2OS4zOTdMODguMDQxIDBINzQuMjI4NUw3NC4yOTQ3IDY5LjA2NzRDNzQuMjk0NyA4My42NDYgODQuMDc2IDk0LjAwMjggOTguMzUxIDk1LjA1OFY4MS40Njg5QzkyLjMzNzQgODAuNDc5NSA4OC4xMDcxIDc1LjcyOTkgODguMTA3MSA2OS4zOTdaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNODcuOTU0OCA2OS41MjcyTDg3Ljg4ODYgMC4xMzAxMjdINzQuMDc2Mkw3NC4xNDIzIDY5LjE5NzZDNzQuMTQyMyA4My43NzYxIDgzLjkyMzcgOTQuMTMyOSA5OC4xOTg3IDk1LjE4ODJWODEuNTk5QzkyLjE4NSA4MC42MDk3IDg3Ljk1NDggNzUuODYgODcuOTU0OCA2OS41MjcyWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTIzNC4xOTIgNjMuMDMyM0MyMzMuNTIyIDQ2LjI2NzEgMjE5LjM3OCAzMi43NzY2IDIwMi4wMTcgMzIuNzc2NkMxODQuMjUzIDMyLjc3NjYgMTY5Ljc3NCA0Ni45MjIyIDE2OS43NzQgNjQuMjc2MkMxNjkuNzc0IDgxLjYzMDMgMTg0LjI1MyA5NS43NzY2IDIwMi4wMTcgOTUuNzc2NkMyMDguODU0IDk1Ljc3NjYgMjE1LjIyMiA5My42ODA2IDIyMC40NSA5MC4wNzg4Vjk1LjE4N0gyMzQuMzI2TDIzNC4xOTIgNjMuMTYyOVY2My4wMzIzWk0yMDIuMDE3IDgyLjI4NjFDMTkxLjg5NSA4Mi4yODYxIDE4My42NSA3NC4yMzA5IDE4My42NSA2NC4zNDIyQzE4My42NSA1NC40NTM0IDE5MS44OTUgNDYuMzk4MyAyMDIuMDE3IDQ2LjM5ODNDMjEyLjEzOSA0Ni4zOTgzIDIyMC4zODQgNTQuNDUzMiAyMjAuMzg0IDY0LjM0MjJDMjIwLjM4NCA3NC4yMzExIDIxMi4xMzkgODIuMjg2MSAyMDIuMDE3IDgyLjI4NjFaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMjcwLjM3NiAzMi40MTg3QzI1NC4wMTUgMzIuNDE4NyAyNDAuNzUyIDQ1LjYzMjIgMjQwLjc1MiA2MS45MzIxVjk1LjM1MTNIMjU0LjgzNVY2MS45MDk5QzI1NC44MzUgNTMuNDMzOCAyNjEuNzMyIDQ2LjU2MjUgMjcwLjI0IDQ2LjU2MjVIMjcwLjUxMkMyNzkuMDIgNDYuNTYyNSAyODUuOTE3IDUzLjQzMzggMjg1LjkxNyA2MS45MDk5Vjk1LjM1MTNIMzAwVjYxLjkzMjFDMzAwIDQ1LjYzMjIgMjg2LjczNyAzMi40MTg3IDI3MC4zNzYgMzIuNDE4N1oiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik03Ny42NDY1IDk2LjM0MjVDNzYuNzExOSA5Ny42NjY2IDc1LjcxNjkgOTguOTU0NyA3NC42NjcgMTAwLjE4OEM3My42MTY4IDEwMS40MjggNzIuNTE3NSAxMDIuNjE0IDcxLjM2NDMgMTAzLjc1N0M3MC4yMTcgMTA0Ljg5OSA2OS4wMTUxIDEwNS45ODggNjcuNzY0NiAxMDcuMDI4QzY2LjUyMDQgMTA4LjA2OCA2NS4yMjc5IDEwOS4wNDggNjMuODkyNiAxMDkuOTczQzYyLjU2MzIgMTEwLjkwNSA2MS4xOTA1IDExMS43NzUgNTkuNzgyMiAxMTIuNTg2QzU4LjM4MDIgMTEzLjM5IDU2LjkzNTggMTE0LjEzNCA1NS40NjA5IDExNC44MTdDNTMuOTkyMSAxMTUuNSA1Mi40OTI3IDExNi4xMTcgNTAuOTU3IDExNi42NjhDNDkuNDM5NyAxMTcuMjI0IDQ3Ljg4NTcgMTE3LjcwOCA0Ni4zMDc2IDExOC4xMTlDNDQuNzQ3NyAxMTguNTM2IDQzLjE2MzEgMTE4Ljg4OCA0MS41NTQ3IDExOS4xNjZDMzkuOTY0MyAxMTkuNDQ0IDM4LjM1NTUgMTE5LjY1NiAzNi43MjI3IDExOS43ODlDMzUuMTIwMiAxMTkuOTI4IDMzLjQ5OTMgMTIwIDMxLjg2MDQgMTIwQzMwLjIyMTQgMTIwIDI4LjYwMDUgMTE5LjkyOCAyNi45OTggMTE5Ljc4OUMyNS4zNjUyIDExOS42NTYgMjMuNzUwMyAxMTkuNDQ0IDIyLjE2NiAxMTkuMTY2QzIwLjU1NzcgMTE4Ljg4OCAxOC45Njc4IDExOC41MzYgMTcuNDE0MSAxMTguMTE5TDIwLjk4OTMgMTA0LjgyN0MyMi4xNjA3IDEwNS4xNDcgMjMuMzU2NiAxMDUuNDA3IDI0LjU2NDUgMTA1LjYxM0MyNS43NjAyIDEwNS44MjUgMjYuOTc0MSAxMDUuOTgyIDI4LjIwMDIgMTA2LjA4NUMyOS40MDgxIDEwNi4xODggMzAuNjI4MSAxMDYuMjQyIDMxLjg2MDQgMTA2LjI0MkMzMy4wOTI2IDEwNi4yNDIgMzQuMzEyNiAxMDYuMTg4IDM1LjUyMDUgMTA2LjA4NUMzNi43NDY1IDEwNS45ODIgMzcuOTYwNSAxMDUuODI1IDM5LjE1NjIgMTA1LjYxM0M0MC4zNjQxIDEwNS40MDcgNDEuNTYgMTA1LjE0NyA0Mi43MzE0IDEwNC44MjdDNDMuOTIxMiAxMDQuNTE4IDQ1LjA4NzEgMTA0LjE1NSA0Ni4yMzQ0IDEwMy43MzhDNDcuMzg3NiAxMDMuMzI3IDQ4LjUxNjUgMTAyLjg2MSA0OS42MjExIDEwMi4zNDdDNTAuNzMxOSAxMDEuODMzIDUxLjgxODkgMTAxLjI3OCA1Mi44NzUgMTAwLjY2N0M1My45MzczIDEwMC4wNjIgNTQuOTc1IDk5LjQwMjMgNTUuOTc2NiA5OC43MDY4QzU2Ljk4NDIgOTguMDExNCA1Ny45NTU4IDk3LjI3NCA1OC44OTA2IDk2LjQ5MzlDNTkuODMxNSA5NS43MTM4IDYwLjczNTUgOTQuODkwNyA2MS42MDM1IDk0LjAzMkM2Mi40NzE1IDkzLjE2NzMgNjMuMzAzNyA5Mi4yNzg3IDY0LjA5MjggOTEuMzQ3NEM2NC44ODE5IDkwLjQxNjEgNjUuNjM0OCA4OS40NDg3IDY2LjMzODkgODguNDUwOUw3Ny42NDY1IDk2LjM0MjVaTTY1LjI3MjUgMzIuNDE3N0w1Ni4zMTE1IDQzLjg0MzVDNjAuOTM2NCA0OS4zNTMyIDYzLjcyMTYgNTYuNDQ4IDYzLjcyMTcgNjQuMTkyMUM2My43MjE3IDgxLjcyMjggNDkuNDU3NSA5NS45MzQxIDMxLjg2MTMgOTUuOTM0M0MxNC4yNjUgOTUuOTM0MyAwIDgxLjcyMjggMCA2NC4xOTIxQzAuMDAwMjQ4NzAyIDQ2LjY2MTcgMTQuMjY1MSAzMi40NTA5IDMxLjg2MTMgMzIuNDUwOUMzNi42NjA2IDMyLjQ1MSA0MS4yMTEyIDMzLjUwOTcgNDUuMjkzIDM1LjQwMzFMNTQuMzIwMyAyMy44OTMzTDY1LjI3MjUgMzIuNDE3N1pNMzEuODYxMyA0Ni4wODI4QzIxLjgyMjQgNDYuMDgyOCAxMy42ODM4IDU0LjE5MDggMTMuNjgzNiA2NC4xOTIxQzEzLjY4MzYgNzQuMTkzNyAyMS44MjIzIDgyLjMwMjUgMzEuODYxMyA4Mi4zMDI1QzQxLjkwMDIgODIuMzAyMyA1MC4wMzgxIDc0LjE5MzYgNTAuMDM4MSA2NC4xOTIxQzUwLjAzNzggNTQuMTkwOSA0MS45MDAxIDQ2LjA4MjkgMzEuODYxMyA0Ni4wODI4WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg=="); } }
+      .title-slide .deco { position: absolute; right: 4cqw; top: 6.5cqw; width: 40cqw; height: 40cqw; pointer-events: none; z-index: 0; }
+      .title-slide .slide-body { z-index: 1; }
+      .title-slide .lede { max-width: 40ch; }
+
+      /* title graphic (animated only while the slide is active) */
+      .deco .ring { fill: none; stroke: var(--artifact-border-dark); stroke-width: 1.2; stroke-dasharray: 2 8; transform-box: view-box; transform-origin: 200px 200px; }
+      .deco .spoke { fill: none; stroke: var(--artifact-primary-brand); stroke-width: 1.8; stroke-dasharray: 3 7; opacity: 0.6; }
+      .deco .halo { fill: var(--artifact-primary-brand); opacity: 0; transform-box: fill-box; transform-origin: center; }
+      .deco .hub { fill: var(--artifact-primary-brand); }
+      .deco .hubwrap, .deco .node { transform-box: fill-box; transform-origin: center; }
+      .deco .nc { fill: var(--artifact-background); stroke: var(--artifact-primary-brand); stroke-width: 1.6; }
+      .deco .dot { fill: var(--artifact-primary-brand); opacity: 0; }
+      .deco .lab { font-family: var(--artifact-font-sans); font-size: 12.5px; font-weight: 600; fill: var(--artifact-text-primary); }
+      .slide.is-active .deco .r1 { animation: decoSpin 70s linear infinite; }
+      .slide.is-active .deco .r2 { animation: decoSpin 100s linear infinite reverse; }
+      .slide.is-active .deco .spoke { animation: decoFlow 1.3s linear infinite; }
+      .slide.is-active .deco .halo { animation: decoPulse 3.2s ease-out infinite; }
+      .slide.is-active .deco .halo.h2 { animation-delay: 1.6s; }
+      .slide.is-active .deco .hubwrap { animation: decoBreathe 3.2s ease-in-out infinite; }
+      .slide.is-active .deco .node { animation: decoPop 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.15) backwards; animation-delay: calc(var(--k) * 0.12s + 0.15s); }
+      .slide.is-active .deco .dot { animation: decoDot 3s ease-in infinite; animation-delay: calc(var(--k) * 0.5s + 1s); }
+      @keyframes decoSpin { to { transform: rotate(360deg); } }
+      @keyframes decoFlow { to { stroke-dashoffset: -20; } }
+      @keyframes decoPulse { 0% { transform: scale(1); opacity: 0.3; } 100% { transform: scale(1.9); opacity: 0; } }
+      @keyframes decoBreathe { 50% { transform: scale(1.05); } }
+      @keyframes decoPop { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: scale(1); } }
+      @keyframes decoDot { 0% { transform: translate(0, 0); opacity: 0; } 12% { opacity: 1; } 80% { opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)); opacity: 0; } }
+      @media (prefers-reduced-motion: reduce) { .deco * { animation: none !important; } }
+
+      /* P66 US slide */
+      .us-main { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: minmax(0, 1fr) auto; column-gap: 2.2cqw; row-gap: 1.6cqw; align-content: stretch; align-items: stretch; }
+      .ucol { display: flex; flex-direction: column; min-width: 0; min-height: 0; border-top: 0.45cqw solid var(--artifact-primary-brand); padding-top: 1.1cqw; }
+      .ucol.c2 { border-top-color: var(--artifact-border-dark); }
+      .ucol.c3 { border-top: 0.45cqw dotted var(--artifact-border-dark); }
+      .uhead { display: flex; align-items: center; gap: 1cqw; margin-bottom: 0.6cqw; }
+      .uhead i { flex: none; width: 1.5cqw; height: 1.5cqw; border-radius: 50%; background: var(--artifact-primary-brand); }
+      .c2 .uhead i { background: var(--artifact-background-light); border: 0.28cqw solid var(--artifact-primary-brand); }
+      .c3 .uhead i { background: var(--artifact-background-light); border: 0.28cqw dotted var(--artifact-text-secondary); }
+      .uhead strong { display: block; font-size: 1.85cqw; font-weight: 600; line-height: 1.15; }
+      .uhead em { display: block; font-style: normal; font-size: 1.12cqw; color: var(--artifact-text-secondary); margin-top: 0.15cqw; }
+      .ucol ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; flex: 1; }
+      .ucol li { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0.7cqw 0; border-bottom: 0.12cqw solid var(--artifact-rule); }
+      .ucol li:last-child { border-bottom: 0; }
+      .ucol li b { font-size: 1.5cqw; font-weight: 600; margin-bottom: 0.25cqw; }
+      .ucol li span { font-size: 1.2cqw; line-height: 1.38; color: var(--artifact-text-secondary); }
+      .bridge { grid-column: 1 / -1; display: flex; align-items: center; gap: 1.6cqw; padding: 1.1cqw 1.8cqw; border-radius: 1.1cqw; background: var(--artifact-accent-tint); border-left: 0.55cqw solid var(--artifact-primary-brand); font-size: 1.28cqw; line-height: 1.4; }
+      .bridge b { flex: none; font-weight: 600; max-width: 14ch; }
+      .bridge span { color: var(--artifact-text-secondary); }
+
+      /* use-case layout */
+      .uc-main { grid-template-columns: 23cqw minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); column-gap: 3cqw; align-content: stretch; align-items: stretch; }
+      .uc-side { display: grid; align-content: start; gap: 1.5cqw; }
+      .uc-block h3 { margin: 0 0 0.35cqw; font-family: var(--artifact-font-mono); font-size: 0.95cqw; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--artifact-soft); }
+      .uc-block p { font-size: 1.28cqw; line-height: 1.38; color: var(--artifact-text-primary); }
+      .uc-right { display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 1.4cqw; min-width: 0; min-height: 0; }
+      .flow { margin: 0; min-width: 0; min-height: 0; display: grid; place-items: center; overflow: hidden; padding: 0.8cqw 1cqw; border: 0.12cqw solid var(--artifact-border-light); border-radius: 1.1cqw; background: var(--artifact-background-light); }
+      .flow svg { width: 100%; height: 100%; display: block; }
+      .flow.wide { padding: 1.2cqw 1.6cqw; }
+      .layout-anatomy .slide-main { align-content: stretch; }
+
+      .impact { --tone: var(--artifact-link); display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 2.2cqw; align-items: center; padding: 1.2cqw 1.8cqw; border-radius: 1.1cqw; background: var(--artifact-accent-tint); border-left: 0.55cqw solid var(--tone); }
+      .impact.realized, .row6.realized, .rung.realized { --tone: var(--artifact-positive); }
+      .impact.verified, .row6.verified, .rung.verified { --tone: var(--artifact-link); }
+      .impact.self, .row6.self, .rung.self { --tone: var(--artifact-warning); }
+      .impact.none, .row6.none, .rung.none { --tone: var(--artifact-soft); }
+      .impact-num { display: grid; gap: 0.5cqw; justify-items: start; }
+      .impact-num strong { font-size: 3.3cqw; font-weight: 300; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+      .impact p { font-size: 1.22cqw; line-height: 1.38; color: var(--artifact-text-secondary); }
+      .badge { display: inline-block; padding: 0.2cqw 0.8cqw; border: 0.12cqw solid var(--tone, currentColor); border-radius: 999px; color: var(--tone); font-family: var(--artifact-font-mono); font-size: 0.85cqw; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+
+      /* svg vocabulary */
+      .sv .n { fill: var(--artifact-background); stroke: var(--artifact-border-dark); stroke-width: 1.2; }
+      .sv .n-q { fill: var(--artifact-background); stroke: var(--artifact-border-dark); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .sv .n-agent { fill: var(--artifact-primary-brand); stroke: none; }
+      .sv .n-out { fill: var(--artifact-background); stroke: var(--artifact-primary-brand); stroke-width: 1.8; }
+      .sv .n-good { fill: var(--artifact-positive-background); stroke: var(--artifact-positive); stroke-width: 1.4; }
+      .sv .n-warn { fill: var(--artifact-background); stroke: var(--artifact-warning); stroke-width: 1.4; }
+      .sv .band { fill: var(--artifact-accent-tint); stroke: none; }
+      .sv .row { fill: var(--artifact-background-light); stroke: none; }
+      .sv .verdict { fill: var(--artifact-primary-brand); }
+      .sv .sec { fill: var(--artifact-primary-brand); }
+      .sv .lbl { font-family: var(--artifact-font-sans); font-size: 12.5px; font-weight: 600; fill: var(--artifact-text-primary); }
+      .sv .lbl.s { font-size: 11.5px; }
+      .sv .lbl.big { font-size: 17px; }
+      .sv .sub { font-family: var(--artifact-font-sans); font-size: 11px; font-weight: 400; fill: var(--artifact-text-secondary); }
+      .sv .sub.b { font-size: 13px; }
+      .sv .sub.q { font-size: 12.5px; font-style: italic; }
+      .sv .on-agent { fill: var(--artifact-background); }
+      .sv .sub.on-agent { opacity: 0.92; }
+      .sv .cap { font-family: var(--artifact-font-mono); font-size: 9.5px; font-weight: 500; letter-spacing: 0.1em; fill: var(--artifact-soft); }
+      .sv .cap.cite { fill: var(--artifact-link); letter-spacing: 0.02em; font-size: 10.5px; }
+      .sv .ar { fill: none; stroke: var(--artifact-soft); stroke-width: 1.6; stroke-linejoin: round; }
+      .sv .ar-h { stroke: var(--artifact-primary-brand); stroke-width: 2; }
+      .sv .ic { color: var(--artifact-text-secondary); }
+      .sv .ic-agent { color: var(--artifact-background); }
+      .sv .ic-primary { color: var(--artifact-primary-brand); }
+      .sv .ic-good { color: var(--artifact-positive); }
+      .sv .ic-warn { color: var(--artifact-warning); }
+      .sv .step circle { fill: var(--artifact-text-primary); }
+      .sv .step text { font-family: var(--artifact-font-sans); font-size: 11px; font-weight: 700; fill: var(--artifact-background); }
+      .sv .dot.good { fill: var(--artifact-positive); }
+      .sv .dot.warn { fill: var(--artifact-warning); }
+      .sv .dot.bad { fill: var(--artifact-negative); }
+      .sv .num { fill: var(--artifact-primary-brand); }
+      .sv .numt { font-family: var(--artifact-font-sans); font-size: 10.5px; font-weight: 700; fill: var(--artifact-background); }
+      .sv .ln { fill: var(--artifact-border-light); }
+      .sv .ln.chg { fill: var(--artifact-positive); opacity: 0.55; }
+      .sv .ln.flag { fill: var(--artifact-warning); opacity: 0.6; }
+      .title-slide .n { fill: var(--artifact-background-light); stroke: var(--artifact-border-dark); stroke-width: 1.4; }
+      .title-slide .n-agent { fill: var(--artifact-primary-brand); }
+      .title-slide .ar { fill: none; stroke: var(--artifact-border-dark); stroke-width: 1.5; }
+      .title-slide .ic { color: var(--artifact-text-secondary); }
+      .title-slide .ic-agent { color: var(--artifact-background); }
+      .title-slide .step-dot { fill: var(--artifact-text-primary); }
+      .title-slide .stepn { font-family: var(--artifact-font-sans); font-size: 12px; font-weight: 700; fill: var(--artifact-background); }
+
+      /* overview table */
+      .rows { display: grid; gap: 0; align-content: center; }
+      .rowh, .row6 { display: grid; grid-template-columns: 3.6cqw 19cqw 25cqw minmax(0, 1fr); column-gap: 1.2cqw; align-items: center; }
+      .rowh { padding: 0 0 0.7cqw; border-bottom: 0.12cqw solid var(--artifact-border-dark); font-family: var(--artifact-font-mono); font-size: 0.95cqw; letter-spacing: 0.1em; text-transform: uppercase; color: var(--artifact-soft); }
+      .row6 { --tone: var(--artifact-link); padding: 1.05cqw 0; border-bottom: 0.12cqw solid var(--artifact-rule); }
+      .rn { width: 2.7cqw; height: 2.7cqw; display: grid; place-items: center; border-radius: 50%; background: var(--artifact-primary-brand); color: var(--artifact-background); font-weight: 700; font-size: 1.3cqw; }
+      .ra { font-size: 1.75cqw; font-weight: 500; letter-spacing: -0.01em; }
+      .rw { font-size: 1.28cqw; color: var(--artifact-text-secondary); line-height: 1.3; }
+      .rr { display: flex; align-items: center; gap: 1.2cqw; min-width: 0; }
+      .rr b { font-size: 1.4cqw; font-weight: 500; }
+
+      /* evidence */
+      .ev-main { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); column-gap: 3.5cqw; align-content: stretch; align-items: center; }
+      .ladder { display: grid; gap: 1.2cqw; }
+      .rung { --tone: var(--artifact-link); width: var(--w); padding: 1.3cqw 1.6cqw; border-radius: 1cqw; background: var(--artifact-background-light); border-left: 0.6cqw solid var(--tone); display: grid; gap: 0.7cqw; }
+      .rung-h { display: flex; align-items: center; gap: 1.2cqw; }
+      .rung-d { font-size: 1.15cqw; color: var(--artifact-text-secondary); }
+      .rung b { font-size: 1.55cqw; font-weight: 500; line-height: 1.25; }
+      .howto h3 { font-size: 1.9cqw; font-weight: 500; margin-bottom: 1.2cqw; }
+      .howto ol { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 1.3cqw; }
+      .howto li { counter-increment: s; position: relative; padding-left: 3.6cqw; font-size: 1.38cqw; line-height: 1.4; color: var(--artifact-text-secondary); }
+      .howto li b { color: var(--artifact-text-primary); font-weight: 600; }
+      .howto li::before { content: counter(s); position: absolute; left: 0; top: -0.1cqw; width: 2.4cqw; height: 2.4cqw; display: grid; place-items: center; border-radius: 50%; background: var(--artifact-primary-brand); color: var(--artifact-background); font-weight: 700; font-size: 1.2cqw; }
+
+      /* next steps */
+      .next-main { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); column-gap: 4cqw; align-content: stretch; align-items: center; }
+      .next-left { display: grid; gap: 2.2cqw; }
+      .step-big { display: grid; grid-template-columns: 4.2cqw minmax(0, 1fr); column-gap: 1.6cqw; align-items: start; }
+      .sn { width: 4.2cqw; height: 4.2cqw; display: grid; place-items: center; border-radius: 50%; background: var(--artifact-primary-brand); color: var(--artifact-background); font-size: 2.1cqw; font-weight: 300; }
+      .step-big h3 { font-size: 2.1cqw; font-weight: 500; margin-bottom: 0.4cqw; }
+      .step-big p { font-size: 1.4cqw; line-height: 1.4; color: var(--artifact-text-secondary); }
+      .two-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; }
+      .two-steps .step-big { grid-template-columns: 6cqw minmax(0, 1fr); }
+      .two-steps .step-big h3 { font-size: 2.8cqw; line-height: 1.2; margin: 0; }
+      .next-right { padding: 2cqw 2.2cqw; border-radius: 1.2cqw; background: var(--artifact-accent-tint); border: 0.12cqw solid var(--artifact-border-light); }
+      .next-right h3 { font-size: 1.7cqw; font-weight: 500; margin-bottom: 1.4cqw; }
+      .checks { margin: 0; padding: 0; list-style: none; display: grid; gap: 1.3cqw; }
+      .checks li { display: grid; grid-template-columns: 2cqw minmax(0, 1fr); column-gap: 1.2cqw; font-size: 1.3cqw; line-height: 1.38; color: var(--artifact-text-secondary); }
+      .checks b { color: var(--artifact-text-primary); font-weight: 600; }
+      .box { width: 1.7cqw; height: 1.7cqw; margin-top: 0.1cqw; border: 0.2cqw solid var(--artifact-primary-brand); border-radius: 0.4cqw; }
+
+      /* notes bar */
+      .media-bar { justify-content: center; }
+      .notes { flex: 1; min-width: 0; margin: 0; font-size: 12px; line-height: 1.35; color: var(--artifact-text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+      .nav { display: inline-flex; align-items: center; gap: 12px; }
+    </style>
+  </head>
+  <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-doc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 15h6M9 18h4"/></g></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></g></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></g></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></g></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/></g></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4.5 4.5L19 7"/></g></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 3.600 8 7"/></g></symbol>
+    <symbol id="i-ticket" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v3a2 2 0 000 4v3H3v-3a2 2 0 000-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/></g></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h6l2 2h10v11H3z"/></g></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.500 8-8 9-4.500-1-8-4-8-9V6z"/></g></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l10 17H2z"/><path d="M12 10v5M12 18v.5"/></g></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.500-4.500"/></g></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1-4L16 5l3 3L8 19z"/></g></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></g></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4M4 20h16"/><path d="M8 16l4-5 3 3 5-7"/></g></symbol>
+  </defs>
+</svg>
+
+    <div class="deck-viewport">
+      <main class="deck-stage">
+        <div class="deck">
+          <div class="deck-track">
+            <section class="slide title-slide" aria-label="Title slide">
+              <svg class="deco" viewBox="0 0 400 400" aria-hidden="true" overflow="visible"><circle class="ring r1" cx="200" cy="200" r="180"/><circle class="ring r2" cx="200" cy="200" r="82"/><path class="spoke" d="M200.0 106.0 L200.0 150.0"/><path class="spoke" d="M281.4 153.0 L243.3 175.0"/><path class="spoke" d="M281.4 247.0 L243.3 225.0"/><path class="spoke" d="M200.0 294.0 L200.0 250.0"/><path class="spoke" d="M118.6 247.0 L156.7 225.0"/><path class="spoke" d="M118.6 153.0 L156.7 175.0"/><circle class="dot" cx="200.0" cy="106.0" r="3.8" style="--k:0;--dx:0.0px;--dy:44.0px"/><circle class="dot" cx="281.4" cy="153.0" r="3.8" style="--k:1;--dx:-38.1px;--dy:22.0px"/><circle class="dot" cx="281.4" cy="247.0" r="3.8" style="--k:2;--dx:-38.1px;--dy:-22.0px"/><circle class="dot" cx="200.0" cy="294.0" r="3.8" style="--k:3;--dx:0.0px;--dy:-44.0px"/><circle class="dot" cx="118.6" cy="247.0" r="3.8" style="--k:4;--dx:38.1px;--dy:-22.0px"/><circle class="dot" cx="118.6" cy="153.0" r="3.8" style="--k:5;--dx:38.1px;--dy:22.0px"/><circle class="halo" cx="200" cy="200" r="50"/><circle class="halo h2" cx="200" cy="200" r="50"/><g class="hubwrap"><circle class="hub" cx="200" cy="200" r="50"/><image href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI5IiBoZWlnaHQ9IjEyOSIgdmlld0JveD0iMCAwIDEyOSAxMjkiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxlbGxpcHNlIGN4PSI2NC41NDk5IiBjeT0iNjQuNjIwNSIgcng9IjY0LjE0ODUiIHJ5PSI2NCIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTk2LjA4OTggODMuMDA1MUM5NS4zODYxIDgzLjk5OTcgOTQuNjM2MyA4NC45NjczIDkzLjg0NTcgODUuODkzOEM5My4wNTUxIDg2LjgyNDggOTIuMjI3NiA4Ny43MTUxIDkxLjM1OTQgODguNTczNUM5MC40OTU3IDg5LjQzMTggODkuNTkwOCA5MC4yNDk0IDg4LjY0OTQgOTEuMDMwNUM4Ny43MTI1IDkxLjgxMTcgODYuNzM4OCA5Mi41NDc1IDg1LjczMzQgOTMuMjQyNEM4NC43MzI1IDkzLjk0MTggODMuNjk5OSA5NC41OTY3IDgyLjYzOTYgOTUuMjA1M0M4MS41ODQgOTUuODA5MyA4MC40OTYyIDk2LjM2NzggNzkuMzg1NyA5Ni44ODExQzc4LjI3OTggOTcuMzk0MyA3Ny4xNTA0IDk3Ljg1NzQgNzUuOTk0MSA5OC4yNzA4Qzc0Ljg1MTggOTguNjg4NSA3My42ODIxIDk5LjA1MTggNzIuNDk0MSA5OS4zNjA2QzcxLjMxOTYgOTkuNjc0IDcwLjEyNjEgOTkuOTM3OCA2OC45MTUgMTAwLjE0N0M2Ny43MTc4IDEwMC4zNTYgNjYuNTA2NiAxMDAuNTE1IDY1LjI3NzMgMTAwLjYxNUM2NC4wNzEgMTAwLjcxOSA2Mi44NTA5IDEwMC43NzQgNjEuNjE3MiAxMDAuNzc0QzYwLjM4MzIgMTAwLjc3NCA1OS4xNjI2IDEwMC43MTkgNTcuOTU2MSAxMDAuNjE1QzU2LjcyNjggMTAwLjUxNSA1NS41MTExIDEwMC4zNTYgNTQuMzE4NCAxMDAuMTQ3QzUzLjEwNzMgOTkuOTM3OCA1MS45MTAxIDk5LjY3MzkgNTAuNzQwMiA5OS4zNjA2TDUzLjQzMTYgODkuMzc4MkM1NC4zMTM3IDg5LjYxODkgNTUuMjE0NiA4OS44MTM2IDU2LjEyNCA4OS45NjhDNTcuMDI0MiA5MC4xMjY5IDU3LjkzODMgOTAuMjQ1MyA1OC44NjEzIDkwLjMyMjVDNTkuNzcwNyA5MC4zOTk3IDYwLjY4OTUgOTAuNDQwNyA2MS42MTcyIDkwLjQ0MDdDNjIuNTQ0OSA5MC40NDA3IDYzLjQ2MzYgOTAuMzk5NyA2NC4zNzMgOTAuMzIyNUM2NS4yOTYxIDkwLjI0NTMgNjYuMjEwMSA5MC4xMjcgNjcuMTEwNCA4OS45NjhDNjguMDE5NiA4OS44MTM2IDY4LjkxOTkgODkuNjE4OCA2OS44MDE4IDg5LjM3ODJDNzAuNjk3NSA4OS4xNDY1IDcxLjU3NTcgODguODczMiA3Mi40Mzk1IDg4LjU1OThDNzMuMzA3NiA4OC4yNTEgNzQuMTU3NyA4Ny45MDE5IDc0Ljk4OTMgODcuNTE1OUM3NS44MjU1IDg3LjEyOTkgNzYuNjQzNCA4Ni43MTE4IDc3LjQzODUgODYuMjUzMkM3OC4yMzgyIDg1Ljc5OSA3OS4wMjA0IDg1LjMwMzkgNzkuNzc0NCA4NC43ODE1QzgwLjUzMyA4NC4yNTkzIDgxLjI2NDEgODMuNzA1MiA4MS45Njc4IDgzLjExOTRDODIuNjc2MSA4Mi41MzM1IDgzLjM1NzIgODEuOTE1NyA4NC4wMTA3IDgxLjI3MDhDODQuNjY0MyA4MC42MjEzIDg1LjI5MDcgNzkuOTUzNiA4NS44ODQ4IDc5LjI1NDJDODYuNDc4OSA3OC41NTQ3IDg3LjA0NTEgNzcuODI3NyA4Ny41NzUyIDc3LjA3ODRMOTYuMDg5OCA4My4wMDUxWk04Ni43NzI1IDM0Ljk5NTRMODAuMDI2NCA0My41NzU0QzgzLjUwODcgNDcuNzEzNiA4NS42MDU1IDUzLjA0MzEgODUuNjA1NSA1OC44NTk2Qzg1LjYwNTQgNzIuMDI1OSA3NC44NjU0IDgyLjY5OTUgNjEuNjE3MiA4Mi42OTk1QzQ4LjM2OTIgODIuNjk5MiAzNy42MyA3Mi4wMjU3IDM3LjYyOTkgNTguODU5NkMzNy42Mjk5IDQ1LjY5MzUgNDguMzY5MiAzNS4wMiA2MS42MTcyIDM1LjAxOThDNjUuMjMwNyAzNS4wMTk4IDY4LjY1NzIgMzUuODE1NSA3MS43MzA1IDM3LjIzNzVMNzguNTI3MyAyOC41OTNMODYuNzcyNSAzNC45OTU0Wk02MS42MTcyIDQ1LjI1ODFDNTQuMDU5IDQ1LjI1ODMgNDcuOTMxNiA1MS4zNDgxIDQ3LjkzMTYgNTguODU5NkM0Ny45MzE3IDY2LjM3MSA1NC4wNTkxIDcyLjQ2IDYxLjYxNzIgNzIuNDYwMkM2OS4xNzU1IDcyLjQ2MDIgNzUuMzAzNiA2Ni4zNzEyIDc1LjMwMzcgNTguODU5NkM3NS4zMDM3IDUxLjM0OCA2OS4xNzU2IDQ1LjI1ODEgNjEuNjE3MiA0NS4yNTgxWiIgZmlsbD0iYmxhY2siLz4KPC9zdmc+Cg==" x="166" y="166" width="68" height="68"/></g><g class="node" style="--k:0"><circle class="nc" cx="200.0" cy="72.0" r="34"/><g class="ic" transform="translate(186.0 58.0) scale(1.167)"><use href="#i-chart" width="24" height="24"/></g><text class="lab" x="200.0" y="29.0" text-anchor="middle">1  Market analysis</text></g><g class="node" style="--k:1"><circle class="nc" cx="310.9" cy="136.0" r="34"/><g class="ic" transform="translate(296.9 122.0) scale(1.167)"><use href="#i-cal" width="24" height="24"/></g><text class="lab" x="310.9" y="187.0" text-anchor="middle">2  Daily briefing</text></g><g class="node" style="--k:2"><circle class="nc" cx="310.9" cy="264.0" r="34"/><g class="ic" transform="translate(296.9 250.0) scale(1.167)"><use href="#i-doc" width="24" height="24"/></g><text class="lab" x="310.9" y="315.0" text-anchor="middle">3  Contracts</text></g><g class="node" style="--k:3"><circle class="nc" cx="200.0" cy="328.0" r="34"/><g class="ic" transform="translate(186.0 314.0) scale(1.167)"><use href="#i-ticket" width="24" height="24"/></g><text class="lab" x="200.0" y="379.0" text-anchor="middle">4  Support</text></g><g class="node" style="--k:4"><circle class="nc" cx="89.1" cy="264.0" r="34"/><g class="ic" transform="translate(75.1 250.0) scale(1.167)"><use href="#i-pen" width="24" height="24"/></g><text class="lab" x="89.1" y="315.0" text-anchor="middle">5  Procedures</text></g><g class="node" style="--k:5"><circle class="nc" cx="89.1" cy="136.0" r="34"/><g class="ic" transform="translate(75.1 122.0) scale(1.167)"><use href="#i-shield" width="24" height="24"/></g><text class="lab" x="89.1" y="187.0" text-anchor="middle">6  Credit memos</text></g></svg>
+              <div class="slide-body">
+                <header class="slide-head">
+                  <span class="wordmark large" role="img" aria-label="Glean">Glean</span>
+                  <p class="eyebrow">Glean for P66 Singapore · Agent and skill use cases</p>
+                  <h1>Six agents your teams could run next</h1>
+                </header>
+                <div class="slide-main">
+                  <div class="accent-rule" aria-hidden="true"></div>
+                  <p class="lede">Proven patterns from other companies, adapted to SharePoint, OneDrive, Outlook, Teams and ServiceNow, and shown as workflows you can follow in one look.</p>
+                </div>
+                <footer class="slide-foot"><span>John Chua · AI Outcomes Manager, Glean</span><span>October 2026</span></footer>
+              </div>
+            </section>
+            <section class="slide layout-us" aria-label="What P66 is building in the US">
+              <div class="slide-body">
+                <header class="slide-head"><p class="eyebrow">P66 in the US</p><h2>P66 US builds artifacts today and has asked for agent features</h2></header>
+                <div class="slide-main us-main">
+                  <div class="ucol c1"><div class="uhead"><i></i><div><strong>Built and in use</strong><em>Artifacts, described by P66 builders</em></div></div><ul><li><b>Reconciliation dashboards</b><span>Flag items out of tolerance so finance staff see where to act first.</span></li><li><b>Visual status updates</b><span>Dashboards that replace weekly one-line update emails.</span></li><li><b>Small shared apps</b><span>Interactive tools built with business users and shared with colleagues.</span></li></ul></div><div class="ucol c2"><div class="uhead"><i></i><div><strong>Requested by P66</strong><em>Feature requests, not yet built</em></div></div><ul><li><b>HR daily-focus agent</b><span>Day planning from Outlook and To Do for 500+ HR users; needs Outlook item-level data.</span></li><li><b>Azure-group access for actions</b><span>Control who can use agent actions through Azure groups, as P66 does for agent sharing.</span></li><li><b>Databricks settings for agents</b><span>Set the Databricks warehouse and workspace that agents run against.</span></li></ul></div><div class="ucol c3"><div class="uhead"><i></i><div><strong>Raised with Glean</strong><em>Discussed, not yet built</em></div></div><ul><li><b>Refinery site homepages</b><span>P66 asked whether Glean can match the separate homepages its refineries use today.</span></li><li><b>Maintenance intelligence agent</b><span>Glean-proposed example linking drawings, maintenance history and site knowledge for turnaround work.</span></li><li><b>Agents that loop over lists</b><span>Run one check across many records; a P66 request, in beta at Glean with no release date.</span></li></ul></div>
+                  <div class="bridge"><b>The common thread.</b><span>Recurring reviews over data people already hold in Excel, Databricks and Outlook. Trading and middle-office work in Singapore has the same shape.</span></div>
+                </div>
+                <footer class="slide-foot"><span class="source">Sources: Glean and P66 governance session, Sep 14, 2026; P66 feature-request tracker; homepage discovery call, Oct 15, 2026; EBR, Jun 23, 2026. Status as of October 2026.</span><span class="rightfoot"><span class="wordmark" role="img" aria-label="Glean">Glean</span><span class="pgnum">2</span></span></footer>
+              </div>
+            </section>
+            <section class="slide layout-anatomy" aria-label="How every agent works">
+              <div class="slide-body">
+                <header class="slide-head"><p class="eyebrow">How agents work</p><h2>Every use case follows the same five steps</h2></header>
+                <div class="slide-main"><figure class="flow wide"><svg class="sv" viewBox="0 0 900 380" role="img" aria-label="Every agent follows the same five steps: start, gather, reason, produce, decide" preserveAspectRatio="xMidYMid meet" data-m="ah1"><defs><marker id="ah1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.500" markerHeight="6.500" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--artifact-soft)"/></marker><marker id="ah1p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.500" markerHeight="6.500" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--artifact-primary-brand)"/></marker></defs><rect class="n" x="0" y="14" width="150" height="266" rx="14"/><g class="ic-primary" transform="translate(14.0 28.0) scale(1.333)"><use href="#i-search" width="24" height="24"/></g><text class="lbl big" x="14.0" y="78.0">1  Start</text><text class="sub b" x="14.0" y="104.0">Someone asks, drops</text><text class="sub b" x="14.0" y="122.0">in a file, or a</text><text class="sub b" x="14.0" y="140.0">schedule fires.</text><path class="ar ar-h" d="M152 147 L184.5 147" marker-end="url(#ah1p)"/><rect class="n" x="187.5" y="14" width="150" height="266" rx="14"/><g class="ic-primary" transform="translate(201.5 28.0) scale(1.333)"><use href="#i-folder" width="24" height="24"/></g><text class="lbl big" x="201.5" y="78.0">2  Gather</text><text class="sub b" x="201.5" y="104.0">Reads only what</text><text class="sub b" x="201.5" y="122.0">the user can open:</text><g class="ic" transform="translate(201.5 150.0) scale(0.750)"><use href="#i-doc" width="24" height="24"/></g><text class="lbl s" x="227.5" y="164.0">SharePoint</text><g class="ic" transform="translate(201.5 174.0) scale(0.750)"><use href="#i-folder" width="24" height="24"/></g><text class="lbl s" x="227.5" y="188.0">OneDrive</text><g class="ic" transform="translate(201.5 198.0) scale(0.750)"><use href="#i-mail" width="24" height="24"/></g><text class="lbl s" x="227.5" y="212.0">Outlook</text><g class="ic" transform="translate(201.5 222.0) scale(0.750)"><use href="#i-chat" width="24" height="24"/></g><text class="lbl s" x="227.5" y="236.0">Teams</text><g class="ic" transform="translate(201.5 246.0) scale(0.750)"><use href="#i-ticket" width="24" height="24"/></g><text class="lbl s" x="227.5" y="260.0">ServiceNow</text><path class="ar ar-h" d="M339.5 147 L372 147" marker-end="url(#ah1p)"/><rect class="n-agent" x="375" y="14" width="150" height="266" rx="14"/><g class="ic-agent" transform="translate(389.0 28.0) scale(1.333)"><use href="#i-spark" width="24" height="24"/></g><text class="lbl big on-agent" x="389.0" y="78.0">3  Reason</text><text class="sub b on-agent" x="389.0" y="104.0">Follows written</text><text class="sub b on-agent" x="389.0" y="122.0">instructions and</text><text class="sub b on-agent" x="389.0" y="140.0">reusable skills.</text><path class="ar ar-h" d="M527 147 L559.5 147" marker-end="url(#ah1p)"/><rect class="n" x="562.5" y="14" width="150" height="266" rx="14"/><g class="ic-primary" transform="translate(576.5 28.0) scale(1.333)"><use href="#i-doc" width="24" height="24"/></g><text class="lbl big" x="576.5" y="78.0">4  Produce</text><text class="sub b" x="576.5" y="104.0">A cited answer,</text><text class="sub b" x="576.5" y="122.0">draft or brief,</text><text class="sub b" x="576.5" y="140.0">each claim linked</text><text class="sub b" x="576.5" y="158.0">to its source.</text><path class="ar ar-h" d="M714.5 147 L747 147" marker-end="url(#ah1p)"/><rect class="n" x="750" y="14" width="150" height="266" rx="14"/><g class="ic-primary" transform="translate(764.0 28.0) scale(1.333)"><use href="#i-user" width="24" height="24"/></g><text class="lbl big" x="764.0" y="78.0">5  Decide</text><text class="sub b" x="764.0" y="104.0">A person reviews,</text><text class="sub b" x="764.0" y="122.0">edits and decides.</text><text class="sub b" x="764.0" y="140.0">The agent never</text><text class="sub b" x="764.0" y="158.0">signs off.</text><rect class="band" x="0" y="302" width="900" height="64" rx="12"/><g class="ic-primary" transform="translate(18.0 318.0) scale(1.333)"><use href="#i-shield" width="24" height="24"/></g><text class="lbl big" x="64.0" y="330.0">Permission-aware by design</text><text class="sub b" x="64.0" y="350.0">Each person only sees what they could already open. A human reviews before anything is used.</text></svg></figure></div>
+                <footer class="slide-foot"><span class="source">Connectors: those P66 has enabled (Outlook, SharePoint, OneDrive, Teams) plus ServiceNow, to be confirmed.</span><span class="rightfoot"><span class="wordmark" role="img" aria-label="Glean">Glean</span><span class="pgnum">3</span></span></footer>
+              </div>
+            </section>
+            <section class="slide layout-overview" aria-label="Overview of six use cases">
+              <div class="slide-body">
+                <header class="slide-head"><p class="eyebrow">The six at a glance</p><h2>One agent for each part of the Singapore office</h2></header>
+                <div class="slide-main"><div class="rows" role="table"><div class="rowh" role="row"><span></span><span>Agent</span><span>Who uses it</span><span>Reported result</span></div><div class="row6 verified" role="row"><span class="rn">1</span><span class="ra">Research synthesis</span><span class="rw">Analysts, traders, strategy</span><span class="rr"><span class="badge">Customer-authored</span><b>~1 day → ~20 min</b></span></div><div class="row6 self" role="row"><span class="rn">2</span><span class="ra">Daily briefing</span><span class="rw">Trading desk, treasury, middle office</span><span class="rr"><span class="badge">Self-reported</span><b>25 min per person per day</b></span></div><div class="row6 verified" role="row"><span class="rn">3</span><span class="ra">Contract analysis</span><span class="rw">Middle office, legal, compliance</span><span class="rr"><span class="badge">Customer-verified</span><b>92% faster RFP response</b></span></div><div class="row6 realized" role="row"><span class="rn">4</span><span class="ra">Support deflection</span><span class="rw">HR, IT service desk, finance ops</span><span class="rr"><span class="badge">Realized</span><b>68% fewer HR tickets</b></span></div><div class="row6 verified" role="row"><span class="rn">5</span><span class="ra">SOP generator</span><span class="rw">Middle and back office, compliance, IT</span><span class="rr"><span class="badge">Customer-verified</span><b>90% of runbook content rewritten</b></span></div><div class="row6 none" role="row"><span class="rn">6</span><span class="ra">Credit memo drafting</span><span class="rw">Credit and counterparty risk</span><span class="rr"><span class="badge">Not yet measured</span><b>40-hour baseline to first draft</b></span></div></div></div>
+                <footer class="slide-foot"><span class="source">Results are what other companies reported, not forecasts for P66. Source: Glean customer use case registry, Aug 2026.</span><span class="rightfoot"><span class="wordmark" role="img" aria-label="Glean">Glean</span><span class="pgnum">4</span></span></footer>
+              </div>
+            </section>
+            <section class="slide layout-uc" aria-label="Use case 1: Market analysis">
+              <div class="slide-body">
+                <header class="slide-head"><p class="eyebrow">Use case 1 of 6 · Market analysis</p><h2>Turn a pile of market reports into one cited brief</h2></header>
+                <div class="slide-main uc-main">
+                  <aside class="uc-side">
+                    <div class="uc-block"><h3>Why it exists</h3><p>Analysts read dozens of reports and notes to answer one question, and confidential text could not go into consumer AI tools.</p></div>
+                    <div class="uc-block"><h3>Who uses it</h3><p>Market analysts, traders and strategy.</p></div>
+                    <div class="uc-block"><h3>Where it came from</h3><p>A national education nonprofit built it, with advice from Glean. P66 version reads SharePoint, OneDrive and Outlook.</p></div>
+                  </aside>
+                  <div class="uc-right">
+                    <figure class="flow"><svg class="sv" viewBox="0 0 640 270" role="img" aria-label="Workflow: a question and three source types go to a research agent, which returns a cited brief" preserveAspectRatio="xMidYMid meet" data-m="ah2"><defs><marker id="ah2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.500" markerHeight="6.500" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--artifact-soft)"/></marker><marker id="ah2p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.500" markerHeight="6.500" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--artifact-primary-brand)"/></marker></defs><text class="cap" x="10.0" y="82.0">SOURCES THE USER CAN OPEN</text><rect class="n" x="10" y="92" width="150" height="46" rx="10"/><g class="ic" transform="translate(20.0 105.0) scale(0.833)"><use href="#i-doc" width="24" height="24"/></g><text class="lbl" x="46.0" y="112.5">Market reports</text><text class="sub" x="46.0" y="128.5">SharePoint</text><rect class="n" x="10" y="148" width="150" height="46" rx="10"/><g class="ic" transform="translate(20.0 161.0) scale(0.833)"><use href="#i-folder" width="24" height="24"/></g><text class="lbl" x="46.0" y="168.5">Desk notes</text><text class="sub" x="46.0" y="184.5">OneDrive</text><rect class="n" x="10" y="204" width="150" height="46" rx="10"/><g class="ic" transform="translate(20.0 217.0) scale(0.833)"><use href="#i-mail" width="24" height="24"/></g><text class="lbl" x="46.0" y="224.5">Broker emails</text><text class="sub" x="46.0" y="240.5">Outlook</text><rect class="n-q" x="135" y="14" width="290" height="40" rx="10"/><text class="sub q" x="147.0" y="38.5">“What changed in Asia cracks this week?”</text><g class="step"><circle cx="135" cy="14" r="9.500"/><text x="135" y="18" text-anchor="middle">1</text></g><rect class="n-agent" x="205" y="96" width="150" height="108" rx="12"/><g class="ic-agent" transform="translate(269.0 105.0) scale(0.917)"><use href="#i-spark" width="24" height="24"/></g><text class="lbl on-agent" x="280.0" y="143.0" text-anchor="middle">Research agent</text><text class="sub on-agent" x="280.0" y="159.0" text-anchor="middle">groups by theme and</text><text class="sub on-agent" x="280.0" y="173.0" text-anchor="middle">bullish or bearish</text><text class="sub on-agent" x="280.0" y="187.0" text-anchor="middle">signal</text><g class="step"><circle cx="201" cy="92" r="9.500"/><text x="201" y="96" text-anchor="middle">3</text></g><path class="ar ar-h" d="M280 54 L280 98" marker-end="url(#ah2p)"/><path class="ar" d="M160 115 H182 V150 H205" marker-end="url(#ah2)"/><path class="ar" d="M160 171 H182 V150 H205" marker-end="url(#ah2)"/><path class="ar" d="M160 227 H182 V150 H205" marker-end="url(#ah2)"/><g class="step"><circle cx="10" cy="92" r="9.500"/><text x="10" y="96" text-anchor="middle">2</text></g><path class="ar ar-h" d="M355 150 L425 150" marker-end="url(#ah2p)"/><rect class="n-out" x="425" y="22" width="205" height="232" rx="10"/><g class="ic-primary" transform="translate(437.0 32.0) scale(0.833)"><use href="#i-doc" width="24" height="24"/></g><text class="lbl" x="463.0" y="47.0">Weekly brief</text><rect class="row" x="437" y="62" width="181" height="36" rx="6"/><circle class="dot good" cx="450" cy="80" r="4.500"/><text class="lbl s" x="462.0" y="77.0">Theme A</text><text class="sub" x="462.0" y="90.0">bullish</text><text class="cap cite" x="608.0" y="84.0" text-anchor="end">[1] [3]</text><rect class="row" x="437" y="106" width="181" height="36" rx="6"/><circle class="dot warn" cx="450" cy="124" r="4.500"/><text class="lbl s" x="462.0" y="121.0">Theme B</text><text class="sub" x="462.0" y="134.0">mixed</text><text class="cap cite" x="608.0" y="128.0" text-anchor="end">[2]</text><rect class="row" x="437" y="150" width="181" height="36" rx="6"/><circle class="dot bad" cx="450" cy="168" r="4.500"/><text class="lbl s" x="462.0" y="165.0">Theme C</text><text class="sub" x="462.0" y="178.0">bearish</text><text class="cap cite" x="608.0" y="172.0" text-anchor="end">[4] [5]</text><rect class="row gap" x="437" y="194" width="181" height="36" rx="6"/><g class="ic-warn" transform="translate(444.0 203.0) scale(0.750)"><use href="#i-warn" width="24" height="24"/></g><text class="sub" x="468.0" y="216.0">Evidence gaps listed</text><text class="cap" x="437.0" y="246.0">ILLUSTRATIVE · EVERY CLAIM CITED</text><g class="step"><circle cx="425" cy="22" r="9.500"/><text x="425" y="26" text-anchor="middle">4</text></g></svg></figure>
+                    <div class="impact verified">
+                      <div class="impact-num"><span class="badge">Customer-authored · measured</span><strong>~1 day → ~20 min</strong></div>
+                      <p>To synthesize 300+ open-text survey comments. That is survey text, not market reports, so P66’s gain will differ.</p>
+                    </div>
+                  </div>
+                </div>
+                <footer class="slide-foot"><span class="source">Source: Glean customer use case registry, Aug 2026. Customer names withheld.</span><span class="rightfoot"><span class="wordmark" role="img" aria-label="Glean">Glean</span><span class="pgnum">5</span></span></footer>
+              </div>
+            </section>
+            <section class="slide layout-uc" aria-label="Use case 2: Desk productivity">
+              <div class="slide-body">
+                <header class="slide-head"><p class="eyebrow">Use case 2 of 6 · Desk productivity</p><h2>Start each day with a ranked brief, not a full inbox</h2></header>
+                <div class="slide-main uc-main">
+                  <aside class="uc-side">
+                    <div class="uc-block"><h3>Why it exists</h3><p>Priorities sit across calendar, inbox and chat, so people assemble their own morning briefing by hand.</p></div>
+                    <div class="uc-block"><h3>Who uses it</h3><p>Trading desk, treasury, middle office, anyone with a heavy inbox.</p></div>
+                    <div class="uc-block"><h3>Where it came from</h3><p>A recruiting software company built it, with advice from Glean. P66 version reads Outlook Calendar, Outlook mail and Teams.</p></div>
+                  </aside>
+                  <div class="uc-right">
+                    <figure class="flow"><svg class="sv" viewBox="0 0 640 270" role="img" aria-label="Workflow: a daily schedule triggers an agent that reads calendar, mail and Teams and returns a ranked brief" preserveAspectRatio="xMidYMid meet" data-m="ah3"><defs><marker id="ah3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.500" markerHeight="6.500" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--artifact-soft)"/></marker><marker id="ah3p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.500" markerHeight="6.500" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--artifact-primary-brand)"/></marker></defs><rect class="n" x="10" y="100" width="140" height="70" rx="10"/><g class="ic" transform="translate(20.0 125.0) scale(0.833)"><use href="#i-clock" width="24" height="24"/></g><text class="lbl" x="46.0" y="132.5">Every morning</text><text class="sub" x="46.0" y="148.5">scheduled run</text><g class="step"><circle cx="6" cy="96" r="9.500"/><text x="6" y="100" text-anchor="middle">1</text></g><text class="cap" x="185.0" y="14.0">READS WHAT THE USER CAN ACCESS</text><rect class="n" x="185" y="30" width="160" height="62" rx="10"/><g class="ic" transform="translate(195.0 51.0) scale(0.833)"><use href="#i-cal" width="24" height="24"/></g><text class="lbl" x="221.0" y="58.5">Calendar</text><text class="sub" x="221.0" y="74.5">Outlook · today</text><rect class="n" x="185" y="104" width="160" height="62" rx="10"/><g class="ic" transform="translate(195.0 125.0) scale(0.833)"><use href="#i-mail" width="24" height="24"/></g><text class="lbl" x="221.0" y="132.5">Mail</text><text class="sub" x="221.0" y="148.5">Outlook · unanswered</text><rect class="n" x="185" y="178" width="160" height="62" rx="10"/><g class="ic" transform="translate(195.0 199.0) scale(0.833)"><use href="#i-chat" width="24" height="24"/></g><text class="lbl" x="221.0" y="206.5">Teams chats</text><text class="sub" x="221.0" y="222.5">open asks</text><g class="step"><circle cx="181" cy="30" r="9.500"/><text x="181" y="34" text-anchor="middle">2</text></g><path class="ar" d="M150 135 L166 135"/><path class="ar" d="M166 61 L166 209"/><path class="ar" d="M166 61 L185 61" marker-end="url(#ah3)"/><path class="ar" d="M166 135 L185 135" marker-end="url(#ah3)"/><path class="ar" d="M166 209 L185 209" marker-end="url(#ah3)"/><rect class="n-agent" x="385" y="92" width="100" height="86" rx="12"/><g class="ic-agent" transform="translate(424.0 101.0) scale(0.917)"><use href="#i-spark" width="24" height="24"/></g><text class="lbl on-agent" x="435.0" y="139.0" text-anchor="middle">Daily agent</text><text class="sub on-agent" x="435.0" y="155.0" text-anchor="middle">ranks by</text><text class="sub on-agent" x="435.0" y="169.0" text-anchor="middle">urgency</text><g class="step"><circle cx="381" cy="88" r="9.500"/><text x="381" y="92" text-anchor="middle">3</text></g><path class="ar" d="M345 61 H365 V135 H385" marker-end="url(#ah3)"/><path class="ar" d="M345 135 H365 V135 H385" marker-end="url(#ah3)"/><path class="ar" d="M345 209 H365 V135 H385" marker-end="url(#ah3)"/><path class="ar ar-h" d="M485 135 L505 135" marker-end="url(#ah3p)"/><rect class="n-out" x="505" y="30" width="130" height="214" rx="10"/><g class="ic-primary" transform="translate(516.0 40.0) scale(0.833)"><use href="#i-check" width="24" height="24"/></g><text class="lbl" x="541.0" y="55.0">Your day</text><rect class="row" x="515" y="72" width="110" height="46" rx="6"/><circle class="num" cx="529" cy="95" r="8"/><text class="numt" x="529" y="99" text-anchor="middle">1</text><text class="lbl s" x="543.0" y="93.0">Prep</text><text class="sub" x="543.0" y="107.0">call at 10:00</text><rect class="row" x="515" y="126" width="110" height="46" rx="6"/><circle class="num" cx="529" cy="149" r="8"/><text class="numt" x="529" y="153" text-anchor="middle">2</text><text class="lbl s" x="543.0" y="147.0">Reply</text><text class="sub" x="543.0" y="161.0">limit question</text><rect class="row" x="515" y="180" width="110" height="46" rx="6"/><circle class="num" cx="529" cy="203" r="8"/><text class="numt" x="529" y="207" text-anchor="middle">3</text><text class="lbl s" x="543.0" y="201.0">Deadline</text><text class="sub" x="543.0" y="215.0">16:00 cut-off</text><text class="cap" x="515.0" y="238.0">ILLUSTRATIVE</text><g class="step"><circle cx="505" cy="30" r="9.500"/><text x="505" y="34" text-anchor="middle">4</text></g></svg></figure>
+                    <div class="impact self">
+                      <div class="impact-num"><span class="badge">Self-reported · pilot survey</span><strong>25 min per day</strong></div>
+                      <p>Saved per person, from one pilot survey; modeled at about $1.56M a year. Not instrumented, so treat it as directional.</p>
+                    </div>
+                  </div>
+                </div>
+                <footer class="slide-foot"><span class="source">Source: Glean customer use case registry, Aug 2026. Customer names withheld.</span><span class="rightfoot"><span class="wordmark" role="img" aria-label="Glean">Glean</span><span class="pgnum">6</span></span></footer>
+              </div>
+            </section>
+            <section class="slide layout-uc" aria-label="Use case 3: Middle office and compliance">
+              <div class="slide-body">
+                <header class="slide-head"><p class="eyebrow">Use case 3 of 6 · Middle office and compliance</p><h2>Check every contract against your own standards</h2></header>
+                <div class="slide-main uc-main">
+                  <aside class="uc-side">
+                    <div class="uc-block"><h3>Why it exists</h3><p>Staff dig through old agreements by hand to find the key terms and decide what to do next.</p></div>
+                    <div class="uc-block"><h3>Who uses it</h3><p>Middle office, compliance, legal and commercial.</p></div>
+                    <div class="uc-block"><h3>Where it came from</h3><p>A services firm that answers RFPs built it. P66 version compares against a SharePoint playbook and past agreements.</p></div>
+                  </aside>
+                  <div class="uc-right">
+                    <figure class="flow"><svg class="sv" viewBox="0 0 640 270" role="img" aria-label="Workflow: a contract is compared with the playbook and past agreements, producing a pre-read with a recommendation" preserveAspectRatio="xMidYMid meet" data-m="ah4"><defs><marker id="ah4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.500" markerHeight="6.500" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--artifact-soft)"/></marker><marker id="ah4p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.500" markerHeight="6.500" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--artifact-primary-brand)"/></marker></defs><rect class="n" x="10" y="100" width="130" height="72" rx="10"/><g class="ic" transform="translate(20.0 126.0) scale(0.833)"><use href="#i-doc" width="24" height="24"/></g><text class="lbl" x="46.0" y="133.5">Contract</text><text class="sub" x="46.0" y="149.5">from the user</text><g class="step"><circle cx="6" cy="96" r="9.500"/><text x="6" y="100" text-anchor="middle">1</text></g><rect class="n" x="170" y="8" width="190" height="48" rx="10"/><g class="ic" transform="translate(180.0 22.0) scale(0.833)"><use href="#i-shield" width="24" height="24"/></g><text class="lbl" x="206.0" y="29.5">Playbook</text><text class="sub" x="206.0" y="45.5">your standard terms</text><rect class="n" x="170" y="214" width="190" height="48" rx="10"/><g class="ic" transform="translate(180.0 228.0) scale(0.833)"><use href="#i-layers" width="24" height="24"/></g><text class="lbl" x="206.0" y="235.5">Past agreements</text><text class="sub" x="206.0" y="251.5">similar precedents</text><rect class="n-agent" x="185" y="80" width="160" height="112" rx="12"/><g class="ic-agent" transform="translate(254.0 89.0) scale(0.917)"><use href="#i-spark" width="24" height="24"/></g><text class="lbl on-agent" x="265.0" y="127.0" text-anchor="middle">Contract agent</text><text class="sub on-agent" x="265.0" y="143.0" text-anchor="middle">extracts key terms,</text><text class="sub on-agent" x="265.0" y="157.0" text-anchor="middle">compares, finds</text><text class="sub on-agent" x="265.0" y="171.0" text-anchor="middle">precedents</text><g class="step"><circle cx="181" cy="76" r="9.500"/><text x="181" y="80" text-anchor="middle">2</text></g><path class="ar ar-h" d="M140 136 L185 136" marker-end="url(#ah4p)"/><path class="ar" d="M265 56 L265 80" marker-end="url(#ah4)"/><path class="ar" d="M265 214 L265 192" marker-end="url(#ah4)"/><path class="ar ar-h" d="M345 136 L395 136" marker-end="url(#ah4p)"/><rect class="n-out" x="395" y="14" width="235" height="242" rx="10"/><g class="ic-primary" transform="translate(407.0 24.0) scale(0.833)"><use href="#i-doc" width="24" height="24"/></g><text class="lbl" x="433.0" y="39.0">Pre-read</text><rect class="row" x="407" y="54" width="211" height="36" rx="6"/><circle class="dot good" cx="421" cy="72" r="4.500"/><text class="lbl s" x="435.0" y="69.0">Payment terms</text><text class="sub" x="435.0" y="82.0">matches standard</text><rect class="row" x="407" y="96" width="211" height="36" rx="6"/><circle class="dot warn" cx="421" cy="114" r="4.500"/><text class="lbl s" x="435.0" y="111.0">Termination</text><text class="sub" x="435.0" y="124.0">differs from playbook</text><rect class="row" x="407" y="138" width="211" height="36" rx="6"/><circle class="dot bad" cx="421" cy="156" r="4.500"/><text class="lbl s" x="435.0" y="153.0">Credit support</text><text class="sub" x="435.0" y="166.0">clause missing</text><rect class="row" x="407" y="180" width="211" height="36" rx="6"/><circle class="dot good" cx="421" cy="198" r="4.500"/><text class="lbl s" x="435.0" y="195.0">Governing law</text><text class="sub" x="435.0" y="208.0">matches standard</text><rect class="verdict" x="407" y="224" width="211" height="30" rx="6"/><text class="lbl on-agent" x="512.0" y="244.0" text-anchor="middle">Recommend: escalate</text><g class="step"><circle cx="395" cy="14" r="9.500"/><text x="395" y="18" text-anchor="middle">3</text></g></svg></figure>
+                    <div class="impact verified">
+                      <div class="impact-num"><span class="badge">Customer-verified · published</span><strong>92% faster</strong></div>
+                      <p>RFP responses; 30+ hours saved per 100 responses and data extraction 92.5% faster. A companion agent cut capability analysis effort by 83%.</p>
+                    </div>
+                  </div>
+                </div>
+                <footer class="slide-foot"><span class="source">Source: Glean customer use case registry, Aug 2026. Customer names withheld.</span><span class="rightfoot"><span class="wordmark" role="img" aria-label="Glean">Glean</span><span class="pgnum">7</span></span></footer>
+              </div>
+            </section>
+            <section class="slide layout-uc" aria-label="Use case 4: HR, IT and finance operations">
+              <div class="slide-body">
+                <header class="slide-head"><p class="eyebrow">Use case 4 of 6 · HR, IT and finance operations</p><h2>Answer routine questions before they become tickets</h2></header>
+                <div class="slide-main uc-main">
+                  <aside class="uc-side">
+                    <div class="uc-block"><h3>Why it exists</h3><p>The same policy questions arrive all day, and a small team answers each one by hand.</p></div>
+                    <div class="uc-block"><h3>Who uses it</h3><p>HR, IT service desk and finance operations.</p></div>
+                    <div class="uc-block"><h3>Where it came from</h3><p>A global online marketplace’s BizTech team built it with Glean. It ran in Slack; the P66 version would use SharePoint and ServiceNow knowledge.</p></div>
+                  </aside>
+                  <div class="uc-right">
+                    <figure class="flow"><svg class="sv" viewBox="0 0 640 270" role="img" aria-label="Workflow: an employee question is answered from policies and knowledge, or the gap is logged for the content owner" preserveAspectRatio="xMidYMid meet" data-m="ah5"><defs><marker id="ah5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.500" markerHeight="6.500" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--artifact-soft)"/></marker><marker id="ah5p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.500" markerHeight="6.500" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--artifact-primary-brand)"/></marker></defs><rect class="n" x="10" y="14" width="150" height="56" rx="10"/><g class="ic" transform="translate(20.0 32.0) scale(0.833)"><use href="#i-user" width="24" height="24"/></g><text class="lbl" x="46.0" y="39.5">Employee asks</text><text class="sub" x="46.0" y="55.5">in chat</text><g class="step"><circle cx="6" cy="10" r="9.500"/><text x="6" y="14" text-anchor="middle">1</text></g><text class="cap" x="10.0" y="100.0">APPROVED SOURCES</text><rect class="n" x="10" y="112" width="150" height="50" rx="10"/><g class="ic" transform="translate(20.0 127.0) scale(0.833)"><use href="#i-doc" width="24" height="24"/></g><text class="lbl" x="46.0" y="134.5">Policies</text><text class="sub" x="46.0" y="150.5">SharePoint</text><rect class="n" x="10" y="172" width="150" height="50" rx="10"/><g class="ic" transform="translate(20.0 187.0) scale(0.833)"><use href="#i-ticket" width="24" height="24"/></g><text class="lbl" x="46.0" y="194.5">Knowledge</text><text class="sub" x="46.0" y="210.5">ServiceNow</text><rect class="n-agent" x="205" y="70" width="130" height="120" rx="12"/><g class="ic-agent" transform="translate(259.0 79.0) scale(0.917)"><use href="#i-spark" width="24" height="24"/></g><text class="lbl on-agent" x="270.0" y="117.0" text-anchor="middle">Support agent</text><text class="sub on-agent" x="270.0" y="133.0" text-anchor="middle">searches, then</text><text class="sub on-agent" x="270.0" y="147.0" text-anchor="middle">answers with</text><text class="sub on-agent" x="270.0" y="161.0" text-anchor="middle">citations</text><g class="step"><circle cx="201" cy="66" r="9.500"/><text x="201" y="70" text-anchor="middle">2</text></g><path class="ar ar-h" d="M160 42 H270 V67" marker-end="url(#ah5p)"/><path class="ar" d="M160 137 H182 V140 H205" marker-end="url(#ah5)"/><path class="ar" d="M160 197 H182 V160 H205" marker-end="url(#ah5)"/><path class="ar ar-h" d="M335 130 H360 V62 H385" marker-end="url(#ah5p)"/><path class="ar" d="M335 150 H360 V190 H385" marker-end="url(#ah5)"/><rect class="n-good" x="385" y="20" width="245" height="84" rx="10"/><g class="ic-good" transform="translate(395.0 52.0) scale(0.833)"><use href="#i-check" width="24" height="24"/></g><text class="lbl" x="421.0" y="52.5">Answered, with a citation</text><text class="sub" x="421.0" y="68.5">The employee gets the policy</text><text class="sub" x="421.0" y="82.5">and its source, no ticket needed.</text><g class="step"><circle cx="381" cy="16" r="9.500"/><text x="381" y="20" text-anchor="middle">3</text></g><rect class="n-warn" x="385" y="148" width="245" height="84" rx="10"/><g class="ic-warn" transform="translate(395.0 180.0) scale(0.833)"><use href="#i-warn" width="24" height="24"/></g><text class="lbl" x="421.0" y="180.5">Not covered: says so</text><text class="sub" x="421.0" y="196.5">No guess. The gap is flagged</text><text class="sub" x="421.0" y="210.5">so the owner can fix the content.</text><g class="step"><circle cx="381" cy="144" r="9.500"/><text x="381" y="148" text-anchor="middle">4</text></g></svg></figure>
+                    <div class="impact realized">
+                      <div class="impact-num"><span class="badge">Realized in production</span><strong>68% fewer tickets</strong></div>
+                      <p>HR ticket volume fell 68%, with 93% answer accuracy against an 80% benchmark and 2 to 3 hours a week saved per support employee.</p>
+                    </div>
+                  </div>
+                </div>
+                <footer class="slide-foot"><span class="source">Source: Glean customer use case registry, Aug 2026. Customer names withheld.</span><span class="rightfoot"><span class="wordmark" role="img" aria-label="Glean">Glean</span><span class="pgnum">8</span></span></footer>
+              </div>
+            </section>
+            <section class="slide layout-uc" aria-label="Use case 5: Operations and compliance">
+              <div class="slide-body">
+                <header class="slide-head"><p class="eyebrow">Use case 5 of 6 · Operations and compliance</p><h2>Refresh stale procedures in a standard template</h2></header>
+                <div class="slide-main uc-main">
+                  <aside class="uc-side">
+                    <div class="uc-block"><h3>Why it exists</h3><p>Procedures drift out of date, and keeping hundreds current by hand would need a dedicated hire.</p></div>
+                    <div class="uc-block"><h3>Who uses it</h3><p>Middle and back office, compliance and IT operations.</p></div>
+                    <div class="uc-block"><h3>Where it came from</h3><p>A digital banking software provider built it. A biotech built a similar SOP generator as a skill plus an agent.</p></div>
+                  </aside>
+                  <div class="uc-right">
+                    <figure class="flow"><svg class="sv" viewBox="0 0 640 270" role="img" aria-label="Workflow: an outdated procedure, a template and current policy go to a skill, which drafts an SOP that an owner approves" preserveAspectRatio="xMidYMid meet" data-m="ah6"><defs><marker id="ah6" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.500" markerHeight="6.500" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--artifact-soft)"/></marker><marker id="ah6p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.500" markerHeight="6.500" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--artifact-primary-brand)"/></marker></defs><rect class="n" x="10" y="20" width="150" height="62" rx="10"/><g class="ic" transform="translate(20.0 41.0) scale(0.833)"><use href="#i-doc" width="24" height="24"/></g><text class="lbl" x="46.0" y="48.5">Old procedure</text><text class="sub" x="46.0" y="64.5">the stale SOP</text><g class="step"><circle cx="6" cy="16" r="9.500"/><text x="6" y="20" text-anchor="middle">1</text></g><rect class="n" x="10" y="104" width="150" height="62" rx="10"/><g class="ic" transform="translate(20.0 125.0) scale(0.833)"><use href="#i-layers" width="24" height="24"/></g><text class="lbl" x="46.0" y="132.5">Template</text><text class="sub" x="46.0" y="148.5">standard format</text><rect class="n" x="10" y="188" width="150" height="62" rx="10"/><g class="ic" transform="translate(20.0 209.0) scale(0.833)"><use href="#i-shield" width="24" height="24"/></g><text class="lbl" x="46.0" y="216.5">Current policy</text><text class="sub" x="46.0" y="232.5">SharePoint docs</text><rect class="n-agent" x="205" y="80" width="120" height="110" rx="12"/><g class="ic-agent" transform="translate(254.0 89.0) scale(0.917)"><use href="#i-spark" width="24" height="24"/></g><text class="lbl on-agent" x="265.0" y="127.0" text-anchor="middle">SOP skill</text><text class="sub on-agent" x="265.0" y="143.0" text-anchor="middle">rewrites into</text><text class="sub on-agent" x="265.0" y="157.0" text-anchor="middle">the template</text><g class="step"><circle cx="201" cy="76" r="9.500"/><text x="201" y="80" text-anchor="middle">2</text></g><path class="ar" d="M160 51 H182 V135 H205" marker-end="url(#ah6)"/><path class="ar" d="M160 135 H182 V135 H205" marker-end="url(#ah6)"/><path class="ar" d="M160 219 H182 V135 H205" marker-end="url(#ah6)"/><path class="ar ar-h" d="M325 135 L365 135" marker-end="url(#ah6p)"/><rect class="n-out" x="365" y="24" width="150" height="222" rx="10"/><text class="lbl" x="377.0" y="46.0">Redrafted SOP</text><rect class="ln same" x="377" y="62" width="126" height="16" rx="3"/><rect class="ln chg" x="377" y="84" width="126" height="16" rx="3"/><rect class="ln chg" x="377" y="106" width="126" height="16" rx="3"/><rect class="ln same" x="377" y="128" width="126" height="16" rx="3"/><rect class="ln flag" x="377" y="150" width="126" height="16" rx="3"/><rect class="ln same" x="377" y="172" width="126" height="16" rx="3"/><rect class="ln chg" x="377" y="194" width="126" height="16" rx="3"/><rect class="ln same" x="377" y="216" width="126" height="16" rx="3"/><g class="step"><circle cx="365" cy="24" r="9.500"/><text x="365" y="28" text-anchor="middle">3</text></g><path class="ar ar-h" d="M515 135 L548 135" marker-end="url(#ah6p)"/><rect class="n" x="548" y="86" width="84" height="98" rx="10"/><g class="ic" transform="translate(578.0 94.0) scale(1.000)"><use href="#i-user" width="24" height="24"/></g><text class="lbl s" x="590.0" y="138.0" text-anchor="middle">Owner</text><text class="lbl s" x="590.0" y="152.0" text-anchor="middle">reviews</text><g class="ic-good" transform="translate(580.0 158.0) scale(0.833)"><use href="#i-check" width="24" height="24"/></g><g class="step"><circle cx="548" cy="86" r="9.500"/><text x="548" y="90" text-anchor="middle">4</text></g><rect class="ln chg" x="365" y="253" width="14" height="9" rx="2"/><text class="sub" x="384.0" y="261.0">changed</text><rect class="ln flag" x="440" y="253" width="14" height="9" rx="2"/><text class="sub" x="459.0" y="261.0">needs check</text></svg></figure>
+                    <div class="impact verified">
+                      <div class="impact-num"><span class="badge">Customer-verified</span><strong>90% rewritten</strong></div>
+                      <p>Share of existing runbook content rewritten by agents. The team plans to refresh 75% of its documents every 90 days without a dedicated hire.</p>
+                    </div>
+                  </div>
+                </div>
+                <footer class="slide-foot"><span class="source">Source: Glean customer use case registry, Aug 2026. Customer names withheld.</span><span class="rightfoot"><span class="wordmark" role="img" aria-label="Glean">Glean</span><span class="pgnum">9</span></span></footer>
+              </div>
+            </section>
+            <section class="slide layout-uc" aria-label="Use case 6: Credit and counterparty risk">
+              <div class="slide-body">
+                <header class="slide-head"><p class="eyebrow">Use case 6 of 6 · Credit and counterparty risk</p><h2>Draft the credit memo; the analyst makes the call</h2></header>
+                <div class="slide-main uc-main">
+                  <aside class="uc-side">
+                    <div class="uc-block"><h3>Why it exists</h3><p>Underwriters read hundreds of pages per counterparty, and a first memo draft can take a 40-hour week.</p></div>
+                    <div class="uc-block"><h3>Who uses it</h3><p>Credit and counterparty risk, middle office and compliance.</p></div>
+                    <div class="uc-block"><h3>Where it came from</h3><p>Built by Glean with a US regional bank’s subject-matter experts; shipped. P66 sections and policy to be agreed.</p></div>
+                  </aside>
+                  <div class="uc-right">
+                    <figure class="flow"><svg class="sv" viewBox="0 0 640 270" role="img" aria-label="Workflow: a counterparty folder is classified, drafted in parallel sections, checked against credit policy, then reviewed by the analyst" preserveAspectRatio="xMidYMid meet" data-m="ah7"><defs><marker id="ah7" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.500" markerHeight="6.500" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--artifact-soft)"/></marker><marker id="ah7p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.500" markerHeight="6.500" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--artifact-primary-brand)"/></marker></defs><rect class="n" x="10" y="94" width="125" height="82" rx="10"/><text class="lbl" x="22.0" y="125.5">Counterparty</text><text class="sub" x="22.0" y="141.5">financials, KYC,</text><text class="sub" x="22.0" y="155.5">ownership, memos</text><g class="step"><circle cx="6" cy="90" r="9.500"/><text x="6" y="94" text-anchor="middle">1</text></g><rect class="n" x="158" y="102" width="84" height="66" rx="10"/><text class="lbl" x="170.0" y="125.5">Classify</text><text class="sub" x="170.0" y="141.5">each</text><text class="sub" x="170.0" y="155.5">document</text><g class="step"><circle cx="154" cy="98" r="9.500"/><text x="154" y="102" text-anchor="middle">2</text></g><path class="ar ar-h" d="M135 135 L158 135" marker-end="url(#ah7p)"/><rect class="sec" x="276" y="12" width="112" height="34" rx="8"/><g class="ic-agent" transform="translate(284.0 20.0) scale(0.750)"><use href="#i-pen" width="24" height="24"/></g><text class="lbl on-agent" x="308.0" y="34.0">Business</text><path class="ar" d="M242 135 H259 V29 H276" marker-end="url(#ah7)"/><path class="ar" d="M388 29 L408 29"/><rect class="sec" x="276" y="62" width="112" height="34" rx="8"/><g class="ic-agent" transform="translate(284.0 70.0) scale(0.750)"><use href="#i-pen" width="24" height="24"/></g><text class="lbl on-agent" x="308.0" y="84.0">Financials</text><path class="ar" d="M242 135 H259 V79 H276" marker-end="url(#ah7)"/><path class="ar" d="M388 79 L408 79"/><rect class="sec" x="276" y="112" width="112" height="34" rx="8"/><g class="ic-agent" transform="translate(284.0 120.0) scale(0.750)"><use href="#i-pen" width="24" height="24"/></g><text class="lbl on-agent" x="308.0" y="134.0">Ownership</text><path class="ar" d="M242 135 H259 V129 H276" marker-end="url(#ah7)"/><path class="ar" d="M388 129 L408 129"/><rect class="sec" x="276" y="162" width="112" height="34" rx="8"/><g class="ic-agent" transform="translate(284.0 170.0) scale(0.750)"><use href="#i-pen" width="24" height="24"/></g><text class="lbl on-agent" x="308.0" y="184.0">Market</text><path class="ar" d="M242 135 H259 V179 H276" marker-end="url(#ah7)"/><path class="ar" d="M388 179 L408 179"/><rect class="sec" x="276" y="212" width="112" height="34" rx="8"/><g class="ic-agent" transform="translate(284.0 220.0) scale(0.750)"><use href="#i-pen" width="24" height="24"/></g><text class="lbl on-agent" x="308.0" y="234.0">Risks</text><path class="ar" d="M242 135 H259 V229 H276" marker-end="url(#ah7)"/><path class="ar" d="M388 229 L408 229"/><path class="ar" d="M408 29 L408 229"/><path class="ar ar-h" d="M408 60 H436" marker-end="url(#ah7p)"/><text class="cap" x="10.0" y="226.0">WRITTEN IN PARALLEL</text><text class="cap" x="10.0" y="240.0">SECTIONS AGREED WITH CREDIT</text><g class="step"><circle cx="276" cy="12" r="9.500"/><text x="276" y="16" text-anchor="middle">3</text></g><rect class="n-out" x="438" y="14" width="192" height="92" rx="10"/><g class="ic-primary" transform="translate(448.0 50.0) scale(0.833)"><use href="#i-doc" width="24" height="24"/></g><text class="lbl" x="474.0" y="50.5">Draft memo</text><text class="sub" x="474.0" y="66.5">every statement</text><text class="sub" x="474.0" y="80.5">linked to its source</text><rect class="n-warn" x="438" y="128" width="192" height="62" rx="10"/><g class="ic-warn" transform="translate(448.0 149.0) scale(0.833)"><use href="#i-shield" width="24" height="24"/></g><text class="lbl" x="474.0" y="156.5">Policy check</text><text class="sub" x="474.0" y="172.5">flags exceptions</text><g class="step"><circle cx="434" cy="124" r="9.500"/><text x="434" y="128" text-anchor="middle">4</text></g><path class="ar" d="M534 106 L534 128" marker-end="url(#ah7)"/><rect class="n" x="438" y="212" width="192" height="48" rx="10"/><g class="ic" transform="translate(448.0 226.0) scale(0.833)"><use href="#i-user" width="24" height="24"/></g><text class="lbl" x="474.0" y="233.5">Analyst reviews</text><text class="sub" x="474.0" y="249.5">and makes the call</text><g class="step"><circle cx="434" cy="208" r="9.500"/><text x="434" y="212" text-anchor="middle">5</text></g><path class="ar" d="M534 190 L534 212" marker-end="url(#ah7)"/></svg></figure>
+                    <div class="impact none">
+                      <div class="impact-num"><span class="badge">Not yet measured · baseline only</span><strong>40 hours</strong></div>
+                      <p>Today’s time to a first draft. This sizes the problem; it is not a result.</p>
+                    </div>
+                  </div>
+                </div>
+                <footer class="slide-foot"><span class="source">Source: Glean customer use case registry, Aug 2026. Customer names withheld.</span><span class="rightfoot"><span class="wordmark" role="img" aria-label="Glean">Glean</span><span class="pgnum">10</span></span></footer>
+              </div>
+            </section>
+            <section class="slide layout-next" aria-label="Next steps">
+              <div class="slide-body">
+                <header class="slide-head"><p class="eyebrow">Next steps</p><h2>Two decisions to take today</h2></header>
+                <div class="slide-main next-main two-steps">
+                  <div class="step-big"><span class="sn">1</span><div><h3>What should we build?</h3></div></div>
+                  <div class="step-big"><span class="sn">2</span><div><h3>Decide on lunch-and-learn format</h3></div></div>
+                </div>
+                <footer class="slide-foot"><span class="source"></span><span class="rightfoot"><span class="wordmark" role="img" aria-label="Glean">Glean</span><span class="pgnum">11</span></span></footer>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+
+      <footer class="media-bar">
+        <div class="nav">
+          <button id="prev" type="button" aria-label="Previous slide">←</button>
+          <span id="counter" aria-live="polite"></span>
+          <button id="next" type="button" aria-label="Next slide">→</button>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const track = document.querySelector('.deck-track')
+      const slides = [...document.querySelectorAll('.slide')]
+      const previous = document.querySelector('#prev')
+      const next = document.querySelector('#next')
+      const counter = document.querySelector('#counter')
+      let index = 0
+
+      const setActive = (nextIndex) => {
+        index = Math.max(0, Math.min(slides.length - 1, nextIndex))
+        track.style.setProperty('--i', index)
+        counter.replaceChildren(`${index + 1} / ${slides.length}`)
+        previous.disabled = index === 0
+        next.disabled = index === slides.length - 1
+        slides.forEach((slide, slideIndex) => {
+          const active = slideIndex === index
+          slide.setAttribute('aria-hidden', String(!active))
+          slide.inert = !active
+          slide.classList.toggle('is-active', active)
+        })
+      }
+
+      previous.addEventListener('click', () => setActive(index - 1))
+      next.addEventListener('click', () => setActive(index + 1))
+      addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight' || event.key === 'PageDown') setActive(index + 1)
+        else if (event.key === 'ArrowLeft' || event.key === 'PageUp') setActive(index - 1)
+        else if (event.key === 'Home') setActive(0)
+        else if (event.key === 'End') setActive(slides.length - 1)
+      })
+      setActive(0)
+    </script>
+  </body>
+</html>
